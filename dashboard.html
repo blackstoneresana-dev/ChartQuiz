@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChartQuiz — Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>(function(){const s=localStorage.getItem('chartquiz-theme');if(s==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
+</head>
+<body>
+
+<noscript>
+  <div style="background:rgba(255,77,106,0.1);border:1px solid rgba(255,77,106,0.3);border-radius:10px;padding:1rem 1.25rem;margin:1rem;color:#ff4d6a;font-family:sans-serif;font-size:14px;">
+    JavaScript est requis pour utiliser ChartQuiz.
+  </div>
+</noscript>
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- SIDEBAR PANEL -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">Navigation</span>
+    <button class="sidebar-close" id="sidebar-close" aria-label="Fermer">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="sidebar-item" href="index.html">
+      <span class="sidebar-item-icon">⌂</span>
+      <div>
+        <div class="sidebar-item-name">Accueil</div>
+        <div class="sidebar-item-desc">Choisir un quiz</div>
+      </div>
+    </a>
+    <div class="sidebar-section-label">Général</div>
+    <a class="sidebar-item active" href="dashboard.html">
+      <span class="sidebar-item-icon">◎</span>
+      <div>
+        <div class="sidebar-item-name">Dashboard</div>
+        <div class="sidebar-item-desc">Mes statistiques</div>
+      </div>
+    </a>
+    <div class="sidebar-section-label">Sessions</div>
+    <a class="sidebar-item" href="quiz.html">
+      <span class="sidebar-item-icon">◈</span>
+      <div>
+        <div class="sidebar-item-name">Direction Quiz</div>
+        <div class="sidebar-item-desc">Prédire la direction du marché</div>
+      </div>
+    </a>
+    <a class="sidebar-item" href="post-analysis.html">
+      <span class="sidebar-item-icon">◉</span>
+      <div>
+        <div class="sidebar-item-name">Post Analysis</div>
+        <div class="sidebar-item-desc">Analyser après coup</div>
+      </div>
+    </a>
+    <a class="sidebar-item" href="what-do-you-do.html">
+      <span class="sidebar-item-icon">◈</span>
+      <div>
+        <div class="sidebar-item-name">What Do You Do</div>
+        <div class="sidebar-item-desc">Réagir en temps réel</div>
+      </div>
+    </a>
+  </nav>
+</aside>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo">Chart<span>Quiz</span></div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="user-badge" id="user-badge"></span>
+      <button class="logout-btn" id="logout-btn" aria-label="Déconnexion" title="Déconnexion">⎋</button>
+      <button class="theme-btn" id="theme-btn" aria-label="Changer le thème">☽</button>
+    </div>
+  </div>
+
+  <!-- CHARGEMENT -->
+  <div id="loading-state" style="text-align:center;padding:3rem 0;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;">
+    Chargement…
+  </div>
+
+  <!-- ERREUR -->
+  <div id="error-state" style="display:none;background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.3);border-radius:10px;padding:1rem 1.25rem;color:var(--down);font-size:13px;margin-bottom:1.5rem;"></div>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div id="dash-main" class="hidden">
+
+    <div class="page-title">Dashboard</div>
+    <div class="page-subtitle">Ton historique de performance</div>
+
+    <!-- ÉTAT VIDE -->
+    <div id="dash-empty" class="dash-empty hidden">
+      <div class="dash-empty-title">Aucune réponse enregistrée</div>
+      <div class="dash-empty-sub">Commence un quiz pour voir tes stats ici</div>
+      <a class="dash-link-btn" href="quiz.html">Commencer un quiz →</a>
+    </div>
+
+    <!-- STATISTIQUES -->
+    <div id="dash-stats" class="hidden">
+
+      <!-- OVERVIEW: 3 KPI globaux -->
+      <div class="kpi-row">
+        <div class="stat-card">
+          <div class="stat-card-label">Série en cours</div>
+          <div class="stat-big-num accent" id="streak-num">0</div>
+          <div class="stat-card-detail" id="streak-sub"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Réponses totales</div>
+          <div class="stat-big-num" id="total-num">—</div>
+          <div class="stat-card-detail">tous quiz confondus</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Jours actifs</div>
+          <div class="stat-big-num" id="active-days">—</div>
+          <div class="stat-card-detail">sur 30 jours</div>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="dash-tabs">
+        <button class="dash-tab active" data-tab="all">Tous</button>
+        <button class="dash-tab" data-tab="direction">Direction</button>
+        <button class="dash-tab" data-tab="pa">Post Analysis</button>
+        <button class="dash-tab" data-tab="wtd">What Do You Do</button>
+      </div>
+
+      <!-- TAB: TOUS — vue comparative -->
+      <div id="tab-all" class="tab-content active">
+        <div class="compare-grid" id="compare-grid"></div>
+      </div>
+
+      <!-- TAB: DIRECTION -->
+      <div id="tab-direction" class="tab-content">
+        <div class="kpi-row" id="dir-kpi-row"></div>
+        <div class="dash-section-title">Réponses par direction</div>
+        <div class="dir-section">
+          <div class="donut-wrap">
+            <svg id="donut-svg" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="70" cy="70" r="52" stroke-width="14" stroke="var(--bg3)"/>
+              <circle id="donut-arc" cx="70" cy="70" r="52" stroke-width="14"
+                      stroke="var(--accent)" stroke-linecap="round"
+                      stroke-dasharray="0 326.7"
+                      transform="rotate(-90 70 70)"/>
+              <text id="donut-label" x="70" y="63" text-anchor="middle"
+                    font-family="'JetBrains Mono',monospace" font-size="9"
+                    fill="var(--muted)" letter-spacing="1">TOTAL</text>
+              <text id="donut-total" x="70" y="83" text-anchor="middle"
+                    font-family="'Syne',sans-serif" font-size="24" font-weight="800"
+                    fill="var(--text)">—</text>
+            </svg>
+          </div>
+          <div class="dir-stats" id="dir-stats"></div>
+        </div>
+        <div class="dash-section-title">À retravailler</div>
+        <div id="dir-redo-list"></div>
+      </div>
+
+      <!-- TAB: POST ANALYSIS -->
+      <div id="tab-pa" class="tab-content">
+        <div class="kpi-row" id="pa-kpi-row"></div>
+        <div class="dash-section-title">Répartition RIGHT / WRONG</div>
+        <div id="pa-split"></div>
+        <div class="dash-section-title">À retravailler</div>
+        <div id="pa-redo-list"></div>
+      </div>
+
+      <!-- TAB: WHAT DO YOU DO -->
+      <div id="tab-wtd" class="tab-content">
+        <div class="kpi-row" id="wtd-kpi-row"></div>
+        <div class="dash-section-title">À retravailler</div>
+        <div id="wtd-redo-list"></div>
+      </div>
+
+      <!-- COURBE DE PERFORMANCE -->
+      <div class="dash-section-title">Performance — 30 derniers jours</div>
+      <div class="perf-chart-wrap">
+        <canvas id="perf-chart" height="220"></canvas>
+        <div id="perf-empty" class="redo-empty hidden">Pas encore assez de données pour tracer la courbe.</div>
+      </div>
+
+      <!-- ACTIVITÉ — toujours visible sous les tabs -->
+      <div class="dash-section-title">Activité — 30 derniers jours</div>
+      <div id="activity-grid" class="activity-grid"></div>
+
+      <!-- CTA -->
+      <a class="cta-nouveau-quiz" href="index.html">Nouveau Quiz →</a>
+
+    </div><!-- /dash-stats -->
+
+  </div><!-- /dash-main -->
+
+</div><!-- /container -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

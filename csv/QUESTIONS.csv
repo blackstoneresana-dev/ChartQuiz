@@ -1,0 +1,282 @@
+  Remplis une ligne par question. Le champ 'id' doit correspondre exactement aux onglets OPTIONS et IMAGES.,,,,
+id,titre,niveau,explication_texte,actif
+q-001,Que va-t-il probablement se passer après cette configuration ?,intermediaire,"1. Breach avec grosse demande. On peut voir que le prix est over-extended. Donc tu ne fais rien
+2. High volume sur la demande et aussi au début du pullback
+3. Début du pullback avec du volume? Donc stand-by
+4. On peut voir qu'il y a un petit accepted Price qui est maintenu. Si tu veux c'est là tu trade la deuxième jambe du pullback
+5. Deuxième jambe du pullback qui fait un breach 
+6. Le SR répond et pousse le prix vers le sud
+7. Le mouvement est bien intense. C'est la première tentative des vendeurs. A ce stade, si on veut vendre, on attend de voir si la réponse des acheteurs va faire un plus haut
+8. On peut voir qu'il n'y a pas de plus haut, le prix a commencé par descendre
+9. Le prix est descendu deux fois avec intensité
+10. Faible réaction des acheteurs.",oui
+q-002,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Breach avec grosse demande. On peut voir que le prix est over-extended. Donc tu ne fais rien
+2. Il y a un range durant le développement de la tendance. Donc faire attention à ce Price point.
+3. On a du volume au niveau du range. Ce qui peut être très interessant
+4. Première jambe de pullnack. On attend de voir où cela va s'arrêter
+5. Accepted price pour la premiere jambe de pullback
+6. Week seller. On peut s'attendre à ce que le niveau avec le range réagisse",oui
+q-003,Que va-t-il probablement se passer après cette configuration ?,intermediaire,"Anticipation Sharp Reversal
+1. On peut voir que le prix est trop monté. Une forme de over-extended si bien qu'il ne faisait plus de higher high
+2. On.a eu du volume au dessus de la moyenne et malgré cela le prix n'est pas monté
+3. Mais on peut voir que les creux faisaient des plus haut. On entre comme ça dans une congestion. Et dans une congestion on attend la cassure. Pas pour suivre dans le sens de la cassure mais pour voir la réponse après
+4. La cassure est arrivée. On attend de voir la réponse
+5. Il y a rejet. Et le pris a commencé par s'affaiblir dans la descente, faisant un peu de over-extended. On attend que ça stabilise avant de sauter dans le train",oui
+q-004,Que va-t-il probablement se passer après cette configuration ?,debutant,"1. Tendance haussière mais qui commence à ralentir
+2. Le premier plus haut
+3. Réaction des vendeurs qui est un peu intense
+4. Les acheteurs reprennent le mouvement haussier mais ne vont pas plus haut que le précédent sommet
+5. Réaction des vendeurs qui est plus importante qu'à la phase 3. A ce stade on attend de voir. On ne peut rien anticiper pour la seule raison que les vendeurs sont forts et on ne sait pas là ou ils vont finir.
+6. Le prix stabilise mais on ne peut pas encore se positionner. C'est la partie la plus difficile
+7. A ce stade on peut voir qu'il y a eu de la volatilité mais je n'ai pas cassé le range. Je peux déjà commencé par l'intéresser à ce qui pourrait se passer en mettant par exemple une alerte sur la résistance pour être informé d'un kill. Je ne fais rien au kill. C'est après la réaction au kill que j'évalue ce qu'il y a à faire
+8. Le mouvement volatile est soutenu par du volume. Ce qui est très interessant
+9. Nous avons eu le prix qui est monté mais de manière très nonchalante. On attend de voir ce qu'il va se passer. Durant sa montée on peut voir une petite pause qu'il y a eu. Attention à ce spot
+10. Il y a eu réaction des acheteurs. C'est surtout le canal haussier qu'il y a eu après cette réaction qui est interessante pour l'entrée",oui
+q-005,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Tendance baissière qui a commencé par perdre de la puissance vers la fin. On peut voir ça avec les bougies de la deuxième jambe.
+2. Gros rejet de la part des acheteurs.
+3. Pullback qui est allé plus haut que dernier responsable Sell. Strong and deep pullback même si les bougies ne sont pas très très intenses.
+4. On a eu un range après le rejet. Les vendeurs n'ont pas pu continuer la descente. Le prix est monté après ce qui a créé un Trap. Il y a eu plein de vendeurs qui se sont positionnés là pour vendre et sont en perte.
+5. Vu la force du pullback représenté en 3, cela prendra du temps pour être digéré. En la considérant comme une demande, le mouvement de descente qui est représenté ici est comme un mini pullback. Et c'est la première jambe du pullback. Vu la force, il faut s'attendre soit à un range (Money spot) soit à une autre tentative de descente plus forte pour que les acheteurs se re-positionnent.
+6. Faible réaction des acheteurs.
+7. Forte tentative des vendeurs. Cette forte tentative peut prêter à confusion quand on la voit en live et penser que c'est la grande tendance qui reprend mais c'est pas le cas. Il faut attendre une réaction de la part des acheteurs parce que le prix est pil au niveau du mini range où les derniers vendeurs se sont fait avoir. Nous aurons ces dernier qui vont vouloir vendre et les acheteurs qui sont dans le sens du mouvement 3 qui voudront aussi reprendre la tendance. 
+8. Réaction de la lecture du point précédent. Rejet qui justifie la réaction des acheteurs et du TRAP Release. Nous auront droit à une congestion puisqu'il y a deux force en présence.
+9. Congestion en forme de triangle. Il faut attendre que le prix sorte d'un coté ou de l'autre et décidé après la réaction. Jamais pendant la cassure. Toujours après la réaction.
+10. Le prix est sortie au nord. Il faut attendre la réaction
+11. Rejet après la sortie. 
+
+Lecture niveau avancée. On peut aussi voir que c'est un graphique de H4, ce ce qui requiert de la patience et le fait d'attendre la clôture des bougies pour décider.",oui
+q-006,Que va-t-il probablement se passer après cette configuration ?,intermediaire,"1. Sustained bullish trend. Waiting for the pullback.
+2. Range forming mid-trend — a potential reaction level. When price pauses and then continues, chasing the trend aggressively becomes risky.
+3. Price peak. Anticipating tops is not advised, but this level serves as a reference for evaluating price reaction on return.
+4. First official pullback since the trend began. A trap was created — a Seller reaction is possible if price pushes back up.
+5. Breach created by Sellers. Watch this level if price returns to it as resistance.
+6. Trend pause. Taking a long at this level carries risk — price could push lower from here. This low is the accepted price.
+7. Buyers retake control and push toward the breach. Price does not cross through.
+8. Resistance holds. Buyers slow at this level.
+9. Price drops again — the Seller reaction from the trap playing out. The move is sufficiently strong. Two questions: will Sellers stall at the accepted price? How will this leg be absorbed?
+10. Rejection. Buyers are present at this level, even though price briefly traded below the accepted price. Waiting for the Seller response — will they push price back down, or will they stall?
+11. Price stalls and eventually moves up. This is a daily chart — patience required.",oui
+q-007,Que va-t-il probablement se passer après cette configuration ?,intermediaire,"1. Upward demand.
+2. Small congestion forming mid trend. Ranges forming within a trend development always warrant attention.
+3. Pullback officially established. Waiting for two things: the end of this pullback, and the Seller reaction when price returns to the pullback origin zone.
+4. Accepted price — Buyer reaction. A Seller reaction is also expected at this stage.
+5. Seller reaction as anticipated. Watching whether price breaks below the accepted price or Buyers step in.
+6. Key level. No reason to rush here — waiting for a clear reaction or volatility.
+7. Rejection by Buyers. Waiting to see how Sellers respond.
+8. Buyers push.
+9. Weak Seller reaction. After this bearish candle, dropping to the X-1 timeframe to time the entry.
+
+Note: This setup qualifies as a Kill — the last two highs form a descending trendline, and the current push up represents a breakout from that congestion. Another Seller reaction is expected. That reaction will determine whether continuing long remains valid.",oui
+q-008,Que va-t-il probablement se passer après cette configuration ?,debutant,"1. Bearish trend with a breach. The break is notably large compared to prior structure.
+2. Support broken. This level will likely react as resistance on return.
+3. Note the small range forming mid-trend.
+4. First leg of the pullback begins. This is where chasing the trend short becomes tempting — but worth asking whether this discount level suits institutional players. Price is also over-extended relative to the EMA20.
+5. Second leg of the pullback, significantly larger than the first. Price reaches the S/R level.
+6. Seller reaction — but no short entry yet. Waiting to see how it develops. Two scenarios: price ranges here, or Buyers push higher again as they currently hold short-term control.
+7. Buyers unable to continue the move up. The signal within the range: watch for volatility. If volatility emerges during the range, that flags a problem.
+
+Note: This is a clean, high-probability setup — but timing it becomes difficult when volatility is ignored or patience runs short. The apparent clarity of the trade can create false confidence and lead to premature entries.",oui
+q-009,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Two-sided market — bearish trend on the left, bullish trend more recently. Focusing on the bullish trend as price appears to be resisting the prior bearish move. Reading the range that developed after the bullish leg.
+2. After the rally, price moves into Seller territory temporarily. Key question: how far down will price go?
+3. Buyers react and price pulls back. Price prints a lower high relative to the previous peak, while lows continue rising — classic congestion structure.
+4. Bullish break of the congestion. After any congestion break, no action taken — waiting for the post-break reaction.
+5. Congestion break. The break is sharp. A range is the likely next development.
+6. Range or Money spot — formed after the two sharp moves: the congestion break at point 4 and the reaction at point 5.
+7. Another congestion break — this is FOMO. After repeated tests, price appears ready to move. This triggers a Dash of Evil. Price fails to continue the rally.
+8. Range after FOMO. When a FOMO break produces no follow-through, a range followed by a Dash is expected.
+9. Dash. Recovery is not immediate here — a large range was also broken, which adds complexity. All stops placed below the range have been taken out.
+10. Range break test — forms Set 1.
+11. Set 2 — trend resumption.
+
+Note: This setup demands patience to read each phase correctly, alongside close attention to volatility. Where could a trader have been caught?
+
+- Point 4 — Easy to assume price would simply continue, when it was only a Kill.
+- Point 6 — The range here is hard to anticipate. However, the two moves at points 4 and 5 already signal it: price was either going to drop sharply or consolidate into a range.
+- Point 8 — Risk of getting trapped in the range. It was anticipatable — price was already showing an inability to continue.
+- Point 10 — Hard to hold through Set 1 / Set 2 after the Dash, when the expectation is that a Dash reaction must be immediate. Advanced-level read.",oui
+q-010,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Mouvement baissier et prix over-extended. Donc on attend le pullback
+2. Pullback en forme de canal haussier. Comment faire pour ne pas resté coincé dans le pullback? Surtout avec les mouvements haussier intenses?
+3. Accepted price mais c'est souvent la suite qui définit vraiment le accepted price. 
+4. Très bonne réaction réaction de la part des vendeurs pour reprendre la tendance. Mais on a pas fait de plus bas. Et on pouvait s'attendre à cela.
+5. Résistance créée par le Accepted price
+6. Réaction des acheteurs. Ils ont remonté le prix
+7. Pullback de ce mouvement d'achat
+8. Réaction forte des acheteur. C'est un peu comme le Second Leg d'un pullback qui est plus intense. Si on considère le mouvement en 4 comme une tendance, le mouvement en 6 est comme la première jambe du pullback et le mouvement en 8 comme la deuxième jambe plus intense. Maintenant la question est de savoir si la seconde jambe intense fera plus haut que le précédent sommet. (Il faut aussi intégrer le fait que le prix est over-extended.
+9. Réaction des vendeurs. Cette réaction a créé un Trap. Mais on ne peut encore rien pour l'instant. Vu la force du mouvement 8 on doit s'attendre à une réaction
+10. Réaction des acheteurs qui ne sont pas allé plus loin que le Trap qui a été créé par le mouvement 9
+11. Trap release 
+
+Note : 
+Il y a plein d'endroit où on peut se faire avoir à vouloir reprendre la tendance vers le bas. Où à vouloir aller vers le haut, ou même a choisir un sens. Durant la phase de pullback en 2 on peut se faire avoir. Le mouvement en 4 peut paraitre très confus. Le mouvement en 7 peut donner l'impression que les vendeurs sont de retour. Cette lecture est de niveau avancé.",oui
+q-011,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Tendance haussière. Le prix a cassé le précédent sommet. Donc on attend le pullback. Parce que c'est over-extended
+2. Responsable de la tendance ou de la demande
+3. Le breach
+4. Pullback jambe 1
+5. Pullback jambe 2 ou congestion. 
+6. Accepted price après la première jambe. Le prix prend une pause là et fait une congestion. C'est à ce moment que je me fais le plus avoir parce que j'ai un niveau qui a déjà réagit dans le passé et maintenant le prix se calme là donc j'ai tendance à sauter et me positionner pour un déclenchement instantané. Ce qui n'arrivent souvent pas. Et qui me fait prendre plusieurs trade. Il faut attendre qu'il y ai un retour de la volatilité avec un break.
+7. Le prix a cassé dans le sens du pullback. Ce qui fait que beaucoup plus de personnes vont maintenant se positionner pour la vente. Ce type de mouvement rajoute encore plus d'ordre de vente pour ceux qui veulent acheter.
+8. C'est le support ou il y a eu le responsable du breach. Le responsable du mouvement 1
+9. Rejet. Il faut attendre la réaction des vendeurs et voir s'ils vont encore plus pousser le prix vers le sud.
+10. Petit range qui montre que les vendeurs n'arrivent pas à continuer la descente.",oui
+q-012,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Tendance baissière
+2. Congestion durant la tendance. Cela montre aussi que la tendance est sur le point de se calmer. On peut voir que la jambe qui a suivi la congestion est plus faible que la jambe précédente
+3. Pullback qui a commencé.
+4. Set1 
+5. Set2 avec FOMO qui a suivi
+6. Le prix stabilise après le FOMO ce qui implique une possibilité d'avoir un Dash ou une autre réaction des vendeurs.
+7. Réaction des vendeurs qui poussent le prix jusqu'au précédent creux.
+8. Cassure de la structure de lower lows et lower highs. On voit que la réaction après ne permet pas au prix de descendre. Il stagne un peu et continue à monter.
+9. Le pris monte. Le pulllback du mouvement en 1 continuer. On ne peux pas vendre pour le moment parce que les acheteurs sont fort.
+10. Fort mouvement baissier. Cela montre que les vendeurs sont présents. Est-ce que l'on pouvait l'anticiper? Oui c'était possible. Mais c'est aussi anticiper un Kill, donc faut pas trop durer dans ce type de mouvement, surtout avec les acheteurs qui n'ont pas fini.
+11. Réaction des acheteurs. il faut attendre la réaction des vendeurs ou s'attendre à un range.
+12. Support 
+13. Les vendeurs poussent mais ne dépassent pas le support. Voici encore un autre point de confusion. Le fait de vouloir aller avec le vendeurs peut pousser à vouloir prendre ce sell et a attendre que le prix fasse plus bas. Alors qu'il y a bien du volume à l'entame du mouvement 11.
+14. Les acheteurs essayent encore! Mais cela ne passe pas.
+15. Squeeze s'installe. On fait quoi? On attend que le prix sorte dans un sens ou dans l'autre. 
+16. Le prix est sorti du sens haussier. On fait quoi? On attend la réaction.
+17. La réaction est très forte. Les acheteurs ne sont pas de la partie. On va avec les vendeurs alors. Et on peut y aller en même temps.",oui
+q-013,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Tendance baissière bien soutenue avec une forte intensité vers la fin
+2. Un peu trop Sharp reversal. Si tu étais dans cette tendance, comment tu pouvais anticiper ce fort mouvement là? On pouvait l'anticiper en étant éveillé sur le changement d'intensité. Le prix qui bouge lentement et qui subitement augmente d'intensité est extrêmement mauvais si je suis entrain de vendre et de tenir la position de vente.
+3. Le Sharp reversal est soutenu par du volume. Quand on a une situation pareille, il ne faut pas chercher à acheter. Parce que la tendance va prédominer encore pour tout au moins une jambe. On peut même suivre la tendance encore pour un moment. Mais le mouvement n'est souvent pas clean
+4. Une autre jambe baissière. On peut voir que le prix descend mais pas avec la même intensité qu'avant.
+5. Le mouvement de descente n'est pas soutenu avec du volume.
+6. Les acheteurs reprennent encore
+7. Le mouvement est encore soutenu par les volumes
+8. Nous avons un mouvement entier haussier en deux jambes
+9. Une petite réaction au sommet qui est soutenu par du volume.
+10. Volume au sommet. Mais il faut voir que ce volume est en dessous du niveau des autres volumes qui ont soutenu les mouvements haussier.
+11. Le prix est quand même redescendu. Il est redescendu avec du volume, cela ve dire qu'on aura probablement droit à une autre jambe soit plus basse ou qu'il y aura un retard.
+12. Le volume au creux.Ce mouvement montrent que les acheteurs sont aussi là. Possibilité d'avoir un money spot ou que le prix dure un peu le temps d'un session.
+13. Le another try qui ressemble à une seconde jambe comme on l'avait dit.
+14. Il faut être éveillé sur le fait que depuis le point 9 on peut remarquer qu'on rentre dans un mouvement en canal haussier. Donc faire attention aux entrées en position et aux Trager. Tu auras des prix deep pour les entrées si tu veux faire du sell et des targets qui n'iront pas vers le previous low
+
+Note : 
+En prenant le Buy comme sur le graphique, il faut être éveillé sur le fait qu'on est pas Fully du coté des acheteur et que les vendeurs vont toujours se positionner. Donc faire attention à ne pas trop durer dans le Buy.",oui
+q-014,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Une congestion qui a bien duré
+2. Break de congestion vers le sud.
+3. Support devenu résistance.
+4. A chaque fois le prix but sur la résistance.
+5. Congestion: Le prix ne fait pas de plus haut. Et pour chaque plus bas qu'il fait, il revient encore sur la résistance. C'est une configuration très confuse
+6. Congestion break vers le sud.
+7. Le prix finit sa course avec un fort volume et il remonte encore. Les vendeurs vont essayer encore. Le another try. Donc faut pas que le volume élevé en fin de courses me fasse penser que le prix ne vas pas revenir vers le bas.
+8. Le another try. Ici aussi il ne faut pas penser que le prix le prix va faire un creux plus bas que le précédent. Il faut juste sortit rapidement quand on est proche du précédent creux.
+9. Deuxième jambe de pullback. Cette jambe est intense et plus grande que la précédente.
+10. Troisième jambe du pullback relativement faible après une première et une deuxième jambe fortes. Il faut remarquer que le prix s'est pausé un peu vers le dernier breach et a continuer faiblement. La petite pause peut faire penser que le prix va descendre mais ce n'est pas ce qui s'est passé.
+11. Une forte volatilité vers la résistance. On peut remarquer la différence de volatilité en comparant avec le mouvement en 10.
+12. Réaction du prix une fois au niveau de la résistance 
+13. Deux jambes baissières avec création de Trap? A ce stade, on a les premiers vendeurs et le prix est over-extended. Donc il ne faut jamais au grand jamais sauter et vendre. Il faut toujours attendre une réaction de la part des acheteurs.
+14. Création de Trap. On attends la réaction des acheteurs
+15. Réaction des acheteurs qui est très forte. C'est bien ce qui est préférable.
+16. Le rejet et le prix qui traine à ce niveau.",oui
+q-015,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Congestion. Quand on voit le prix qui fait du surplace comme ça. Il faut laisser le temps que la congestion casse dans un sens ou dans l'autre. 
+2. Cassure de la congestion et création de S/R
+3. Le prix a fait une pause et a fait un petit pullback
+4. Seconde jambe haussière plus petite et moins consistante que la première. Mais il y a du volume qui soutient ce mouvement là. À ce stade on pourrait s'attendre à un cassure pour créer un pullback
+5. On peut voir la course complète de la tendance haussière après le range. Et on peut s'attendre à un deep pullback
+6. Le prix a commencé par pullback avec trois jambes relativement fortes.
+7. Mais on a pas fait ce deep pullback et on est même pas venu au niveau du précédent creux. D'où les points d'interrogations.
+8. Au lieu de descendre le prix a commencé par se confondre en un squeeze. Quand on voit un squeeze on laisse le prix break dans un sens ou dans l'autre.
+9. Finalement la congestion a break dans le sens des acheteurs. Il faut attendre la réaction des vendeurs avant de faut quoi que ce soit.
+10. Les vendeurs ont poussé vers le sud avec une seule bougie verte.
+11. Les acheteurs ont repris timidement. A ce moment précis on peut avoir peur et se demander si les acheteurs sont aussi fort, pourquoi le prix est aussi faible. Mais la vrai question est de se demander pourquoi les vendeurs ne prennent pas le main si les acheteurs sont aussi faible. Surtout qu'ils ont eu un très bon prix avec le discount.",oui
+q-016,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Le flow général est baissier. Il n'y a pas de confusion sur cela. Même si l'angle n'est pas trop poussée, le flow est baissier.
+2. Forte réaction des acheteurs à la fin de la première jambe qui a fait une cassure. Il y a du volume qui est à la base aussi. Cela veut pas dire que les acheteurs sont là et vont persister. Cela veut juste dure que le prix ne risque pas de casser ce niveau de ci tôt.
+3. Comme on peut le voir le prix a réagit à ce niveau. Mais on peut voir aussi que le volume a commencé à se retourner de faible volume à volume en augmentation. Le prix est monté vers la résistance dans un force relativement forte. Il ne faut donc pas s'attendre à ce que cette force soit renversée automatiquement.
+4. Réaction des verdeurs quand le prix est venu au niveau de la résistance. On peut s'attendre à une réaction des vendeurs. Mais cette réaction ne devrait pas reversée complètement l'achat qui est en cours. Est-ce qu'a ce niveau on pourrait s'attendre à ce que le prix casse la résistance?? C'est une possibilité. En live, c'est une possibilité qui devrait être explorée. Une fois qu'on a vu le range à ce niveau, on pense au scénario de cassure de range.
+5. Le prix est descendu. A ce moment il faut laisser les acheteurs prendre la main et essayer de remonter le prix tout au moins au précédent sommet. Parce qu'il y a eu du volume à la base du dernier mouvement haussier et que le mouvement est assez propre. 
+6. Réaction des acheteurs. La réaction est plus ou moins intense. Ce qui peut induire les acheteurs en erreur. Et ce qui peut être une très bonne opportunités pour les vendeurs.
+7. On peut voir tous les petits signes de rejets qui montrent que les vendeurs sont présents.",oui
+q-017,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Tendance haussière 
+2. Pullback a commencé. On a un petit pourcentage de pullback. Et on sait que le BB n'aime pas ça. Donc on peut s'attendre à un pullback plus deep. Mais si on a pas ce pullback deep alors il faut réfléchir autrement.
+3. Le début du pullback a créé un accepted price. Il faut se demander si ce acheter price tiendra la prochaine fois ou si on aura plus deep.
+4. On a une seconde jambe de pullback qui s'est déroulée en deux temps. Mais qui s'est quand même calmé sur le accepted price. A ce stade je m'attends à deux choses. Je m'attends à un Kill vers le nord. Ou je m'attends à une continuation du pullback vers le sud.
+5. On peut remarquer que les volumes sont entrain d'aller en diminution.
+6. Finalement le prix s'est confondu en range. Pas de cassure vers le sud ou le nord. Même à ce niveau on a toujours le scénario de cassure qui tient bien. Soit on casse vers le sud soit ton casse vers le nord.
+7. On peut voir un petit indice sur la capture. Le volume a break ainsi que le prix qui a break aussi. On peut même trader la cassure mais il faut avoir la patience d'attendre que la bougie clôture d'abord.
+8. Cassure a continué et est maintenant officiellement là. On a un break ou un kill. Il faut attendre le pullback ou le test ou la réaction des vendeurs.
+9. Réaction des vendeurs en une première jambe forte, ensuite une seconde jambe moins forte et une troisième jambe encore moins forte mais le tout qui vient au niveau du Break. On attend donc de voir la baisse être digérée parce qu'elle a un peut de puissance.
+10. Les vendeurs ont du mal a poussé le prix vers le sud. La configuration est confuse mais c'est la meilleur configuration pour se positionner pour le nord.
+11. Petite cassure mais malgré cela les vendeurs n'ont pas poussé le prix vers le sud.
+12. Réaction rapide mais contenu par les acheteur qui poussent encore vers le sud
+13. Encore une autre opportunités pour se positionner vers le nord.",oui
+q-018,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Congestion qui a duré un bon moment
+2. Le prix a cassé la congestion puis on a eu droit à un set one et un set 2 avant que le prix ne descende a nouveau
+3. Le prix a fait un plus bas, mais qui n'est pas trop prononcé. C'est un tiny break et pour un tiny break il faut s'attendre à un deep pullback.
+4. Première jambe de pullback. Il faut s'attendre à une deuxième jambe de pullback.
+5. Deuxième jambe de pullback. Mais la deuxième jambe de pullback va vers le Trap qui a été créé quand il y a eu le break. Dans la structure de la deuxième jambe. On peut voir Une première bogie verte à l'entame de la seconde jambe.
+6. Une seconde bougie verte plus petite que la précédente et une troisième bougie verte qui est encore plus petite. Après cela on vient voir un bougie rouge qui fait relativement la même taille que la bougie verte qui a précédé.
+7. Finalement un range. La question que je pourrait me poser une fois à ce niveau c'est de savoir comment je fais pour être sur que le précédent creux ne va pas m'avoir. C'est aussi de savoir et si je ne vais pas traiter le range qui se développe comme un congestion et attendre que le prix casse dans un sens ou dans l'autre et ensuite de voir le test ou la réaction avant de me positionner. Il faut reconnaitre que là ce n'est pas la même chose. J'ai déjà le congestion break dans le mouvement 3 et le pullback dans le mouvement 5 donc c'est juste une continuation.",oui
+q-019,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Première jambe baissière over-extended
+2. Rejet intense avec du volume. Le prix s'est ensuite stabilisé
+3. Les acheteurs sont prix la main avec beaucoup de force
+4. Il y a une autre tentative des vendeurs. Ce qui est tout à fait normal parce que le flow principal est baissier 
+5. La chute du prix a pris plus de temps que la précédente baisse de prix. Beaucoup plus de temps.
+6. Un range qui s'installe au support. Comment je fais pour ne pas tomber dans ce range? Il faut juste attendre. Du moment ou le prix est venu à ce niveau il n'y a plus rien à faire. On attends juste que la volatilité revienne.
+7. La volatilité est revenue. On a un spike vers le sud et le rejet a suivi.
+8. Finalement le prix a cassé. On attend la réaction des vendeurs. On peut remarquer que le prix est revenu avec intensité aussi. A ce moment la seule chose qu'il faut faire c'est d'attendre de digérer les vendeurs ou de voir s'ils vont faire plus bas. 
+9. Le prix s'est stabilisé et a fait un double bottom. Toujours avec volatilité.
+10. On peut voir que tout au long du développement le volume est allé en croissance
+11. Finalement le prix a cassé de manière très intense.
+12. Pullback avec définition du accepted price. On attend de voir ce qui va se passer si le pullback fait une seconde jambe
+13. Seconde jambe et on peut voir que le prix n'a pas vraiment fais plus bas que le accepted price. Le prix baissier a été digéré par un double bottom",oui
+q-020,Que va-t-il probablement se passer après cette configuration ?,debutant,"1. Congestion 
+2. Congestion break
+3. Support equals resistance 
+4. Deman slowing down
+5. Price pulling back with multiple leg. Vers la fin on peut voir que le prix ne bouge plus malgré les mouvements intenses
+6. Le prix se tasse. Plus de HH on fait des equal highs. Dans ce cas, on attends que la volatilité revienne et que le prix aille dans un sens. Ayant en tête que nous somme dans une congestion qui a cassé vers le sud. (Souvent c'est à ce moment que je prends le sell et il marche bien. Tellement il marche que je tiens la position en oubliant que le prix qui descend est un discount pour les acheteurs.
+7. Finalement le prix est descendu. C'est les premiers vendeurs ou le kill. Ce kill a fait un trap. Il faut attendre que le prix réagisse d'abord. En plus il est over-extended donc il n'y a rien a faire pour le moment.
+8. Le prix réagit et monte avec intensité vers le Break qui a créé le trap.",oui
+q-021,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Congestion 
+2. Congestion break
+3. Pullback. Ce pullback n'est pas consistant on attends de voir
+4. Le prix monte mais c'est faible à en juger les bougies
+5. 100% de retracement par rapport à la dernière jambe baissière. Le mouvement est soutenu par du volume.
+6. On pouvait s'attendre encore à une autre tentative, d'ou le mouvement de descente qu'il y a eu. C'est à cause du volume qui a soutenu le mouvement.
+7. Tout ce qui s'est passé jusqu'à ce moment ne dit encore rien par rapport à la direction que va prendre les choses. Souvent à ce niveau le prix plonge pour faire un deep pullback.
+8. Kill. Ce mouvement marque le fait que les acheteur sont bien là. Après un kill il faut attendre le pullback ou le test ou la réaction des vendeurs.
+9. Faible réaction de la part des vendeurs. 
+10. Kill du faible mouvement baissier. 
+11. Reprise du mouvement.Toutes les bougies sont vertes. Jusqu'à ce qu'on fasse une pause.",oui
+q-022,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Huge congestion 
+2. Breach of the congestion 
+3. Slowing down of the move. No trade is allowed 
+4. Intense pullback. Ce qui peut me tromper là c'est de vouloir reprendre le trade comme si je prenais un Sharp reversal. Mais il n faut pas parce que le prix en montant a fait un Breach donc cela ne servirait à rien.
+5. Seconde jambe du pullback plus faible que la première
+6. Movement intense après le mouvement faible. Si la volatilité était aussi faible, pour quoi le prix est tout à coup revenu intense et volatile à ce moment? Quand on voit ça, il faut se demander ce qui va suivre.
+7. Second try avant que le prix ne chute. Reprise de la tendance.",oui
+q-023,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Demand to the upside, price over-extended. Waiting for the pullback.
+2. Price losing momentum and slowing down. Pullback is coming.
+3. First leg of the pullback with volume supporting. Another leg could happen — no trend resumption yet.
+4. First leg creates an accepted price. Waiting to see if price will hold.
+5. Buyers attempt to push higher — no higher high formed.
+6. Sellers push again with volume supporting the move. Price holds above the accepted price.
+7. Sellers push again — no lower low formed.
+8. Accepted price still holding.
+9. Sellers attempt another leg following the move at point 5. Points 6 and 7 belong to the same leg.
+10. Kill made. Waiting for the pullback or a retest.
+11. Strong move to the downside. Waiting for price to slow down.
+12. Sellers being absorbed, but buyers are not back yet. Waiting.
+13. Buyers make a first leg up. Sellers making no further progress.",oui
+q-024,Que va-t-il probablement se passer après cette configuration ?,debutant,"1. Bullish trend, but weak.
+2. Strong break of the bullish move — trap created. The down move was supported by volume.
+3. Pullback begins.
+4. Price pushes up aggressively but fails to break resistance and got rejected.
+5. After the rejection to the down side, Price returns to the same resistance level.
+6. Price losing momentum on the approach to resistance.
+7. Rejected again at the same level.",oui
+q-025,Que va-t-il probablement se passer après cette configuration ?,avance,"1. Huge congestion developing
+2. Congestion got broken, creating a demand to the upside.
+3. Demand slowing down. So we wait for the pullback
+4. Pullback. Slow and choppy pullback.
+5. Break of the pullback structure withe the first Higher high. We wait to see if sellers will push to the previous low again
+6. Sellers pushed but it was weak
+7. Price get stuck at the support. Sellers can't go through
+
+1. Large congestion developing.
+2. Congestion broken — move to the upside initiated.
+3. Upward demand slowing down. Waiting for the pullback.
+4. Pullback. Slow and choppy.
+5. Pullback structure broken with the first higher high formed. Waiting to see if Sellers push back to the previous low.
+6. Sellers push — weak attempt.
+7. Price holds at support. Sellers making no further progress.",oui

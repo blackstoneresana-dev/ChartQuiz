@@ -1,0 +1,133 @@
+﻿id;bonne_reponse;explication_texte
+pa-002;WRONG;Bad trade because of the tight stop loss
+pa-003;RIGHT;
+pa-004;WRONG;"Bad trade. 
+
+It was an overall down direction. And the price was in a range state. The price got rejected from The resistance and was holding either we leave it because of the sideways or we sell it. Not buying it."
+pa-005;RIGHT;
+pa-006;WRONG;"Bad trade
+
+The direction was right but SL too tight. Got stopped out"
+pa-007;RIGHT;
+pa-008;WRONG;"Bad trade
+
+Price was in a up direction, climax up and got down with high volume. The moment the trade was taken for the sell side, price didn't show signs of sellers back. And at the previous session we made a higher high. Market state was is upward channel"
+pa-009;WRONG;"Trade worked out
+
+We were in a Bad condition. Direction was good but Pullback was not done yet."
+pa-010;WRONG;"Bad trade
+
+Direction was good but the trade was slowing down, the condition to continue the sell was bad and price was over-extended"
+pa-011;WRONG;"Bad trade 
+
+Overall direction of the price was up, the sell trade was bad, and also the price made a higher high the previous day with high volume up and low volume pullback."
+pa-012;RIGHT;"Good trade 
+
+But the price was over extended and you shouldn't be expecting much of that position"
+pa-013;WRONG;"Bad trade because of the condition
+
+By the looks of the 200EMA, price the move if flat, at the same time, price went up after above the last guy who sold. Trap was created. Then from the move up, price pulled back close to the trap. We can notice the rise and the fall of the volume while the price was making a lower low and suddenly buyers kicked in and went above the last guy who sold again. Now we are in a two sided market. This is what I call bad condition because ofter we encounter a range state before price move again. And in bad condition, no trade should be taken."
+pa-014;RIGHT;"Good trade but risky trade and expectation was a bit high 
+
+You took the test of the buy or an another try of the buyers after the kill of the seller with volume. Because price still made a slight new low before it went up. It went to the breach that sellers made, so we are still in sellers territory and now they made a first move with volume, but we need to let the buyers try again."
+pa-015;WRONG;"Bad trade
+
+You were in a bad condition, a range was developing. Even though you took the trade a the extreme, you SL didn't survive."
+pa-016;WRONG;"Bad trade
+
+The conditions was horrible for this trade. On D1, we made a new high and price was ranging at the  200EAM which was pointing down. You didn't have a proper pullback from the move up. When you look at the price, you can easily see a range / congestion developing. There was no trade to be taken. 
+Now if we push things a bit further, the trade you took which is based on the last move up of the previous day, breaking multiples session with volume, was too early. You should have been waited for the New York session to open and waited for the price to make another leg of the pullback on the M15 and after that, only after that you can take the trade."
+pa-017;WRONG;"Bad trade
+
+You took the trade while sellers were hot. It's like grabbing a falling knife. Previous move up was not supported by the volume and it didn't even make an equal high. On H4, we came from a sell that made a slight new low, and a deep pullback. After the struggled deep pullback to the up side with a trap below, we had a kill to the down side with volume. But we cannot sell yet, we need to let the buyers try again. And they did with low volume. And then sellers took the discount. This is a sell trade not a buy trade."
+pa-018;WRONG;"Bad trade
+
+Price was over extended, the momentum was slowing down. 
+But to push things a bit further, the trade you took should have been taken at the New York session because at some point we made a congestion break from the previous session. And also you should have been waited for another leg of the pullback after the range got broken."
+pa-019;WRONG;
+pa-020;RIGHT;
+pa-021;WRONG;"Bad trade
+
+Tu as acheter à un mauvais moment et tu as pas trader aux extreme alors que tu étais dans de mauvaise condition. Le prix était flat (EMA200) de toutes les manière. Ce n'etait pas un trade dans lequel tu devrais être de toutes les façons."
+pa-022;WRONG;"Bad trade à cause du SL qui était trop serré
+
+La lecture était bonne. T'a eu un new low avec du volume et tu as eu un pullback sans volume. Ensuite tu as le range qu'il ya eu avant le break et le pullback qui était vraiment faible avec un pick de volume à l'approche du breach. Cela aurait été un très non trade si tu avait mis un SL un peu plus large."
+pa-023;WRONG;
+pa-024;WRONG;
+pa-025;RIGHT;
+pa-026;RIGHT;
+pa-027;WRONG;
+pa-028;WRONG;
+pa-029;WRONG;
+pa-030;WRONG;
+pa-031;WRONG;
+pa-032;RIGHT;"Bon trade mais très dangereux ce que tu as fait.
+
+La recherche qu'il faut pour prendre ce type de trade est un peu complexe parce que tu as prix un trade à contre tendance. Ce n'est pas juste un simple recherche de trend pullback. Il faut impliquer corrélation et annonce économique."
+pa-033;WRONG;
+pa-034;WRONG;
+pa-035;WRONG;
+pa-036;WRONG;
+pa-037;WRONG;
+pa-038;WRONG;
+pa-039;RIGHT;
+pa-040;RIGHT;
+pa-041;WRONG;
+pa-042;WRONG;
+pa-043;WRONG;
+pa-044;WRONG;
+pa-045;RIGHT;
+pa-046;WRONG;
+pa-047;WRONG;
+pa-048;WRONG;
+pa-049;WRONG;
+pa-050;WRONG;
+pa-051;WRONG;
+pa-052;WRONG;
+pa-053;WRONG;
+pa-054;RIGHT;
+pa-055;WRONG;
+pa-056;RIGHT;
+pa-057;WRONG;
+pa-058;RIGHT;
+pa-059;RIGHT;
+pa-060;WRONG;
+pa-061;WRONG;
+pa-062;WRONG;
+pa-063;RIGHT;
+pa-064;WRONG;
+pa-065;WRONG;
+pa-066;WRONG;
+pa-067;WRONG;
+pa-068;WRONG;
+pa-069;WRONG;
+pa-070;WRONG;
+pa-071;WRONG;
+pa-072;RIGHT;
+pa-073;WRONG;
+pa-074;WRONG;
+pa-075;WRONG;
+pa-076;WRONG;
+pa-077;WRONG;
+pa-078;WRONG;
+pa-079;WRONG;
+pa-080;WRONG;
+pa-081;WRONG;
+pa-082;RIGHT;
+pa-083;WRONG;
+pa-084;RIGHT;
+pa-085;WRONG;
+pa-086;WRONG;
+pa-087;WRONG;
+pa-088;WRONG;
+pa-089;WRONG;
+pa-090;WRONG;
+pa-091;WRONG;
+pa-092;WRONG;
+pa-093;WRONG;
+pa-094;WRONG;
+pa-095;WRONG;
+pa-096;WRONG;
+pa-097;WRONG;
+pa-098;WRONG;
+pa-099;WRONG;

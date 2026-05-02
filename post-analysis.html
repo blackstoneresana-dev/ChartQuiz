@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChartQuiz — Post Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>(function(){const s=localStorage.getItem('chartquiz-theme');if(s==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
+</head>
+<body>
+
+<noscript>
+  <div style="background:rgba(255,77,106,0.1);border:1px solid rgba(255,77,106,0.3);border-radius:10px;padding:1rem 1.25rem;margin:1rem;color:#ff4d6a;font-family:sans-serif;font-size:14px;">
+    JavaScript est requis pour utiliser ChartQuiz.
+  </div>
+</noscript>
+
+<!-- FULLSCREEN OVERLAY -->
+<div class="chart-fullscreen" id="chart-fullscreen">
+  <button class="chart-fullscreen-close" id="chart-fullscreen-close" aria-label="Fermer">✕</button>
+  <img class="chart-fullscreen-img" id="chart-fullscreen-img" src="" alt="" />
+</div>
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- SIDEBAR PANEL -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">Navigation</span>
+    <button class="sidebar-close" id="sidebar-close" aria-label="Fermer">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="sidebar-item" href="index.html">
+      <span class="sidebar-item-icon">⌂</span>
+      <div>
+        <div class="sidebar-item-name">Accueil</div>
+        <div class="sidebar-item-desc">Choisir un quiz</div>
+      </div>
+    </a>
+    <div class="sidebar-section-label">Général</div>
+    <a class="sidebar-item" href="dashboard.html">
+      <span class="sidebar-item-icon">◎</span>
+      <div>
+        <div class="sidebar-item-name">Dashboard</div>
+        <div class="sidebar-item-desc">Mes statistiques</div>
+      </div>
+    </a>
+    <div class="sidebar-section-label">Sessions</div>
+    <a class="sidebar-item" href="quiz.html">
+      <span class="sidebar-item-icon">◈</span>
+      <div>
+        <div class="sidebar-item-name">Direction Quiz</div>
+        <div class="sidebar-item-desc">Prédire la direction du marché</div>
+      </div>
+    </a>
+    <a class="sidebar-item active" href="post-analysis.html">
+      <span class="sidebar-item-icon">◉</span>
+      <div>
+        <div class="sidebar-item-name">Post Analysis</div>
+        <div class="sidebar-item-desc">Analyser après coup</div>
+      </div>
+    </a>
+    <a class="sidebar-item" href="what-do-you-do.html">
+      <span class="sidebar-item-icon">◈</span>
+      <div>
+        <div class="sidebar-item-name">What Do You Do</div>
+        <div class="sidebar-item-desc">Réagir en temps réel</div>
+      </div>
+    </a>
+  </nav>
+</aside>
+
+<div class="container container--wide">
+
+  <!-- HEADER -->
+  <div class="header">
+    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Menu sessions">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo">Chart<span>Quiz</span></div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="user-badge" id="user-badge"></span>
+      <button class="logout-btn" id="logout-btn" aria-label="Déconnexion" title="Déconnexion">⎋</button>
+      <button class="theme-btn" id="theme-btn" aria-label="Changer le thème">☽</button>
+    </div>
+  </div>
+
+  <!-- CHARGEMENT -->
+  <div id="loading-state" style="text-align:center;padding:3rem 0;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;">
+    Chargement…
+  </div>
+
+  <!-- ERREUR -->
+  <div id="error-state" style="display:none;background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.3);border-radius:10px;padding:1rem 1.25rem;color:var(--down);font-size:13px;margin-bottom:1.5rem;"></div>
+
+  <!-- MAIN -->
+  <div id="pa-main" class="hidden">
+
+    <!-- HEADER QUIZ : label + camembert -->
+    <div class="quiz-header-row">
+      <div class="question-label" id="pa-question-label"></div>
+      <svg class="progress-pie" width="52" height="52" viewBox="0 0 44 44">
+        <circle class="pie-bg"  cx="22" cy="22" r="17"/>
+        <circle class="pie-arc" id="pie-fill" cx="22" cy="22" r="17"
+                stroke-dasharray="0 106.8"
+                transform="rotate(-90 22 22)"/>
+        <text id="pie-text" class="pie-text" x="22" y="22">1/10</text>
+      </svg>
+    </div>
+    <div class="question-text" id="pa-question-text"></div>
+
+    <!-- GRAPHIQUES AVANT — côte à côte -->
+    <div class="pa-charts-grid">
+      <div class="chart-block">
+        <span class="chart-tag tag-avant">AVANT — Vue 1</span>
+        <div class="chart-wrap">
+          <img class="chart-img" loading="lazy" decoding="async" id="chart-avant-1" src="" alt="Graphique AVANT 1" />
+        </div>
+      </div>
+      <div class="chart-block">
+        <span class="chart-tag tag-avant">AVANT — Vue 2</span>
+        <div class="chart-wrap">
+          <img class="chart-img" loading="lazy" decoding="async" id="chart-avant-2" src="" alt="Graphique AVANT 2" />
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTIONS RIGHT / WRONG -->
+    <div class="options-row">
+      <div class="options-label">Ce trade était</div>
+      <div class="pa-options" id="pa-options">
+        <div class="opt opt-pa-right" data-choix="RIGHT">
+          <div class="opt-arrow">✓</div>
+          <div class="opt-name">RIGHT</div>
+        </div>
+        <div class="opt opt-pa-wrong" data-choix="WRONG">
+          <div class="opt-arrow">✗</div>
+          <div class="opt-name">WRONG</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOUTON VALIDER -->
+    <button class="submit-btn" id="submit-btn" disabled>
+      Valider ma réponse
+    </button>
+
+    <!-- SECTION RÉSULTAT -->
+    <div class="result-section" id="pa-result-section">
+
+      <hr class="divider">
+
+      <!-- BANDEAU -->
+      <div class="result-banner" id="pa-result-banner">
+        <span class="result-icon" id="pa-result-icon"></span>
+        <div>
+          <div class="result-title" id="pa-result-title"></div>
+          <div class="result-sub"   id="pa-result-sub"></div>
+        </div>
+      </div>
+
+      <!-- GRAPHIQUES APRÈS — côte à côte -->
+      <div class="pa-charts-grid">
+        <div class="chart-block">
+          <span class="chart-tag tag-apres">APRÈS — Vue 1</span>
+          <div class="chart-wrap">
+            <img class="chart-img" loading="lazy" decoding="async" id="chart-apres-1" src="" alt="Graphique APRÈS 1" />
+            </div>
+        </div>
+        <div class="chart-block">
+          <span class="chart-tag tag-apres">APRÈS — Vue 2</span>
+          <div class="chart-wrap">
+            <img class="chart-img" loading="lazy" decoding="async" id="chart-apres-2" src="" alt="Graphique APRÈS 2" />
+            </div>
+        </div>
+      </div>
+
+      <!-- ANALYSE -->
+      <div class="expl-box">
+        <div class="expl-title">Analyse</div>
+        <ul class="expl-list" id="pa-expl-list"></ul>
+      </div>
+
+      <!-- BOUTON SUIVANT -->
+      <button class="next-btn" id="next-btn">Trade suivant →</button>
+
+    </div><!-- /pa-result-section -->
+
+  </div><!-- /pa-main -->
+
+  <!-- SESSION END -->
+  <div class="session-end" id="pa-session-end">
+    <div class="score-banner">
+      <div class="score-num" id="pa-score-num"></div>
+      <div class="score-sub" id="pa-score-sub"></div>
+    </div>
+    <button class="submit-btn" id="restart-btn" style="margin-top:1.5rem;">Nouvelle session →</button>
+  </div>
+
+</div><!-- /container -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/post-analysis.js"></script>
+<script src="js/ui.js"></script>
+
+</body>
+</html>

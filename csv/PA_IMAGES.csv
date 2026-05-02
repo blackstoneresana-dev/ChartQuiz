@@ -1,0 +1,6 @@
+question_id,url_avant_1,url_avant_2,url_apres_1,url_apres_2,source_info
+pa-001,https://res.cloudinary.com/dh4cnlh03/image/upload/chart_pa001_avant_1_nshak8.png,https://res.cloudinary.com/dh4cnlh03/image/upload/chart_pa001_avant_2_dwybow.png,https://res.cloudinary.com/dh4cnlh03/image/upload/chart_pa001_apres_1_fhccpm.png,https://res.cloudinary.com/dh4cnlh03/image/upload/chart_pa001_apres_2_gq0qb6.png,WTICOUSD M5+M15+H1 / H1+H4+1D Aout 2022
+pa-002,chart_pa002_avant_1,chart_pa002_avant_2,chart_pa002_apres_1,chart_pa002_apres_2,
+pa-003,chart_pa003_avant_1,chart_pa003_avant_2,chart_pa003_apres_1,chart_pa003_apres_2,
+pa-004,chart_pa004_avant_1,chart_pa004_avant_2,chart_pa004_apres_1,chart_pa004_apres_2,
+pa-005,chart_pa005_avant_1,chart_pa005_avant_2,chart_pa005_apres_1,chart_pa005_apres_2,

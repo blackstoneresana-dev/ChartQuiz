@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChartQuiz — Accueil</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* ── INDEX PAGE ─────────────────────────────────────────── */
+  .hero {
+    padding: 2.5rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .hero-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+  .hero-title {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+  .hero-title span { color: var(--accent2); }
+  .hero-sub {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 480px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── QUIZ CARDS ──────────────────────────────────────────── */
+  .quiz-cards-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .quiz-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 2rem;
+  }
+  .quiz-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: border-color 0.18s, transform 0.18s;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .quiz-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .quiz-card-dir::before  { background: var(--accent); }
+  .quiz-card-pa::before   { background: var(--up); }
+  .quiz-card-wtd::before  { background: var(--side); }
+
+  .quiz-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+
+  .quiz-card-icon {
+    font-size: 22px;
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+  .quiz-card-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .quiz-card-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+  .quiz-card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  .quiz-card-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .quiz-card-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+  }
+  .quiz-card-cta {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: center;
+    text-decoration: none;
+  }
+  .quiz-card-dir .quiz-card-cta  { background: var(--accent);  color: #fff; }
+  .quiz-card-pa  .quiz-card-cta  { background: var(--up);      color: #fff; }
+  .quiz-card-wtd .quiz-card-cta  { background: var(--side);    color: #080808; }
+
+  .quiz-card-dir .quiz-card-cta:hover  { opacity: 0.85; transform: translateY(-1px); }
+  .quiz-card-pa  .quiz-card-cta:hover  { opacity: 0.85; transform: translateY(-1px); }
+  .quiz-card-wtd .quiz-card-cta:hover  { opacity: 0.85; transform: translateY(-1px); }
+
+  /* ── DASHBOARD TEASER ────────────────────────────────────── */
+  .dash-teaser {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    text-decoration: none;
+    transition: border-color 0.18s;
+  }
+  .dash-teaser:hover { border-color: var(--border2); }
+  .dash-teaser-left {}
+  .dash-teaser-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .dash-teaser-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .dash-teaser-arrow {
+    font-size: 18px;
+    color: var(--muted);
+    flex-shrink: 0;
+    transition: transform 0.18s, color 0.18s;
+  }
+  .dash-teaser:hover .dash-teaser-arrow { transform: translateX(4px); color: var(--text); }
+
+  @media (max-width: 640px) {
+    .quiz-cards { grid-template-columns: 1fr; }
+    .hero-title { font-size: 24px; }
+  }
+</style>
+<script>(function(){const s=localStorage.getItem('chartquiz-theme');if(s==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
+</head>
+<body>
+
+<noscript>
+  <div style="background:rgba(255,77,106,0.1);border:1px solid rgba(255,77,106,0.3);border-radius:10px;padding:1rem 1.25rem;margin:1rem;color:#ff4d6a;font-family:sans-serif;font-size:14px;">
+    JavaScript est requis pour utiliser ChartQuiz.
+  </div>
+</noscript>
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- SIDEBAR PANEL -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">Sessions</span>
+    <button class="sidebar-close" id="sidebar-close" aria-label="Fermer">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">Général</div>
+    <a class="sidebar-item active" href="index.html">
+      <span class="sidebar-item-icon">⌂</span>
+      <div>
+        <div class="sidebar-item-name">Accueil</div>
+        <div class="sidebar-item-desc">Choisir un format</div>
+      </div>
+    </a>
+    <a class="sidebar-item" href="dashboard.html">
+      <span class="sidebar-item-icon">◎</span>
+      <div>
+        <div class="sidebar-item-name">Dashboard</div>
+        <div class="sidebar-item-desc">Mes statistiques</div>
+      </div>
+    </a>
+    <div class="sidebar-section-label">Sessions</div>
+    <a class="sidebar-item" href="quiz.html">
+      <span class="sidebar-item-icon">◈</span>
+      <div>
+        <div class="sidebar-item-name">Direction Quiz</div>
+        <div class="sidebar-item-desc">Prédire la direction du marché</div>
+      </div>
+    </a>
+    <a class="sidebar-item" href="post-analysis.html">
+      <span class="sidebar-item-icon">◉</span>
+      <div>
+        <div class="sidebar-item-name">Post Analysis</div>
+        <div class="sidebar-item-desc">Analyser après coup</div>
+      </div>
+    </a>
+    <a class="sidebar-item" href="what-do-you-do.html">
+      <span class="sidebar-item-icon">◈</span>
+      <div>
+        <div class="sidebar-item-name">What Do You Do</div>
+        <div class="sidebar-item-desc">Réagir en temps réel</div>
+      </div>
+    </a>
+  </nav>
+</aside>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Menu sessions">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo">Chart<span>Quiz</span></div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="user-badge" id="user-badge"></span>
+      <button class="logout-btn" id="logout-btn" aria-label="Déconnexion" title="Déconnexion">⎋</button>
+      <button class="theme-btn" id="theme-btn" aria-label="Changer le thème">☽</button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">ChartQuiz — Plateforme d'entraînement</div>
+    <h1 class="hero-title">Affûte ta lecture<br><span>du marché.</span></h1>
+    <p class="hero-sub">3 formats de quiz pour analyser tes trades, améliorer ta lecture du prix et corriger tes erreurs.</p>
+  </div>
+
+  <!-- QUIZ CARDS -->
+  <div class="quiz-cards-label">Choisir un format</div>
+  <div class="quiz-cards">
+
+    <!-- Direction Quiz -->
+    <div class="quiz-card quiz-card-dir">
+      <div class="quiz-card-icon">↑↓↔</div>
+      <div class="quiz-card-name">Direction Quiz</div>
+      <div class="quiz-card-desc">Analyse un graphique et prédit la direction du prix : UP, DOWN ou SIDEWAYS.</div>
+      <div class="quiz-card-meta">
+        <span class="quiz-card-count">25 questions</span>
+        <span class="quiz-card-badge">10 / session</span>
+      </div>
+      <a class="quiz-card-cta" href="quiz.html">Démarrer →</a>
+    </div>
+
+    <!-- Post Analysis -->
+    <div class="quiz-card quiz-card-pa">
+      <div class="quiz-card-icon">✓✗</div>
+      <div class="quiz-card-name">Post Analysis</div>
+      <div class="quiz-card-desc">Analyse deux graphiques et juge si le trade pris était RIGHT ou WRONG.</div>
+      <div class="quiz-card-meta">
+        <span class="quiz-card-count">99 questions</span>
+        <span class="quiz-card-badge">10 / session</span>
+      </div>
+      <a class="quiz-card-cta" href="post-analysis.html">Démarrer →</a>
+    </div>
+
+    <!-- What Do You Do -->
+    <div class="quiz-card quiz-card-wtd">
+      <div class="quiz-card-icon">A·B·C</div>
+      <div class="quiz-card-name">What Do You Do</div>
+      <div class="quiz-card-desc">Face à une situation de marché, choisis la bonne action parmi 3 options.</div>
+      <div class="quiz-card-meta">
+        <span class="quiz-card-count" id="wtd-count">— questions</span>
+        <span class="quiz-card-badge">5 / session</span>
+      </div>
+      <a class="quiz-card-cta" href="what-do-you-do.html">Démarrer →</a>
+    </div>
+
+  </div>
+
+  <!-- DASHBOARD TEASER -->
+  <a class="dash-teaser" href="dashboard.html">
+    <div class="dash-teaser-left">
+      <div class="dash-teaser-label">Statistiques personnelles</div>
+      <div class="dash-teaser-title">Voir mon dashboard →</div>
+    </div>
+    <div class="dash-teaser-arrow">→</div>
+  </a>
+
+</div><!-- /container -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/index.js"></script>
+
+</body>
+</html>

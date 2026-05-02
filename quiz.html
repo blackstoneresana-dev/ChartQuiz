@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChartQuiz — Direction Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<!-- Init thème avant rendu (évite le flash) -->
+<script>(function(){const s=localStorage.getItem('chartquiz-theme');if(s==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
+</head>
+<body>
+
+<noscript>
+  <div style="background:rgba(255,77,106,0.1);border:1px solid rgba(255,77,106,0.3);border-radius:10px;padding:1rem 1.25rem;margin:1rem;color:#ff4d6a;font-family:sans-serif;font-size:14px;">
+    JavaScript est requis pour utiliser ChartQuiz.
+  </div>
+</noscript>
+
+<!-- FULLSCREEN OVERLAY -->
+<div class="chart-fullscreen" id="chart-fullscreen">
+  <button class="chart-fullscreen-close" id="chart-fullscreen-close" aria-label="Fermer">✕</button>
+  <img class="chart-fullscreen-img" id="chart-fullscreen-img" src="" alt="" />
+</div>
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- SIDEBAR PANEL -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">Sessions</span>
+    <button class="sidebar-close" id="sidebar-close" aria-label="Fermer">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="sidebar-item" href="index.html">
+      <span class="sidebar-item-icon">⌂</span>
+      <div>
+        <div class="sidebar-item-name">Accueil</div>
+        <div class="sidebar-item-desc">Choisir un quiz</div>
+      </div>
+    </a>
+    <div class="sidebar-section-label">Général</div>
+    <a class="sidebar-item" href="dashboard.html">
+      <span class="sidebar-item-icon">◎</span>
+      <div>
+        <div class="sidebar-item-name">Dashboard</div>
+        <div class="sidebar-item-desc">Mes statistiques</div>
+      </div>
+    </a>
+    <div class="sidebar-section-label">Sessions</div>
+    <a class="sidebar-item active" href="quiz.html">
+      <span class="sidebar-item-icon">◈</span>
+      <div>
+        <div class="sidebar-item-name">Direction Quiz</div>
+        <div class="sidebar-item-desc">Prédire la direction du marché</div>
+      </div>
+    </a>
+    <a class="sidebar-item" href="post-analysis.html">
+      <span class="sidebar-item-icon">◉</span>
+      <div>
+        <div class="sidebar-item-name">Post Analysis</div>
+        <div class="sidebar-item-desc">Analyser après coup</div>
+      </div>
+    </a>
+    <a class="sidebar-item" href="what-do-you-do.html">
+      <span class="sidebar-item-icon">◈</span>
+      <div>
+        <div class="sidebar-item-name">What Do You Do</div>
+        <div class="sidebar-item-desc">Réagir en temps réel</div>
+      </div>
+    </a>
+  </nav>
+</aside>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Menu sessions">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo">Chart<span>Quiz</span></div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="user-badge" id="user-badge"></span>
+      <button class="logout-btn" id="logout-btn" aria-label="Déconnexion" title="Déconnexion">⎋</button>
+      <button class="theme-btn" id="theme-btn" aria-label="Changer le thème">☽</button>
+    </div>
+  </div>
+
+  <!-- ÉTAT CHARGEMENT -->
+  <div id="loading-state" style="text-align:center;padding:3rem 0;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;">
+    Chargement…
+  </div>
+
+  <!-- ÉTAT ERREUR -->
+  <div id="error-state" style="display:none;background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.3);border-radius:10px;padding:1rem 1.25rem;color:var(--down);font-size:13px;margin-bottom:1.5rem;"></div>
+
+  <!-- AVERTISSEMENT SAUVEGARDE (non bloquant) -->
+  <div id="save-warning" style="display:none;background:rgba(255,184,77,0.08);border:1px solid rgba(255,184,77,0.3);border-radius:10px;padding:0.75rem 1.25rem;color:var(--side);font-size:12px;font-family:'JetBrains Mono',monospace;margin-bottom:1rem;">
+    Réponse non sauvegardée — vérifiez votre connexion.
+  </div>
+
+  <!-- QUIZ MAIN -->
+  <div id="quiz-main">
+
+  <!-- HEADER QUIZ : label + camembert de progression -->
+  <div class="quiz-header-row">
+    <div class="question-label" id="question-label"></div>
+    <svg class="progress-pie" width="52" height="52" viewBox="0 0 44 44">
+      <circle class="pie-bg"  cx="22" cy="22" r="17"/>
+      <circle class="pie-arc" id="pie-fill" cx="22" cy="22" r="17"
+              stroke-dasharray="0 106.8"
+              transform="rotate(-90 22 22)"/>
+      <text id="pie-text" class="pie-text" x="22" y="22">1/10</text>
+    </svg>
+  </div>
+  <div class="question-text" id="question-text"></div>
+
+  <!-- GRAPHIQUE AVANT -->
+  <span class="chart-tag tag-avant">AVANT</span>
+  <div class="chart-wrap">
+    <img class="chart-img" loading="lazy" decoding="async" id="chart-avant-img" src="" alt="Graphique AVANT" />
+    <button class="chart-expand-btn" aria-label="Agrandir">⤢</button>
+  </div>
+
+  <!-- OPTIONS — label + boutons sur la même ligne -->
+  <div class="options-row">
+    <div class="options-label">Votre analyse</div>
+    <div class="options-grid" id="options">
+      <div class="opt opt-up" data-direction="UP">
+        <div class="opt-arrow">↑</div>
+        <div class="opt-name">UP</div>
+      </div>
+      <div class="opt opt-down" data-direction="DOWN">
+        <div class="opt-arrow">↓</div>
+        <div class="opt-name">DOWN</div>
+      </div>
+      <div class="opt opt-side" data-direction="SIDEWAYS">
+        <div class="opt-arrow">↔</div>
+        <div class="opt-name">SIDEWAYS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMENTAIRE -->
+  <div class="comment-wrap">
+    <textarea
+      id="comment-input"
+      maxlength="200"
+      rows="3"
+      placeholder="Commentaire facultatif — décrivez votre raisonnement (max 200 car.)"
+    ></textarea>
+    <div class="char-count" id="char-count">0 / 200</div>
+  </div>
+
+  <!-- BOUTON VALIDER -->
+  <button class="submit-btn" id="submit-btn" disabled>
+    Valider ma réponse
+  </button>
+
+  <!-- ── SECTION RÉSULTAT (cachée jusqu'à validation) ── -->
+  <div class="result-section" id="result-section">
+
+    <hr class="divider">
+
+    <!-- BANDEAU RÉSULTAT -->
+    <div class="result-banner" id="result-banner">
+      <span class="result-icon" id="result-icon"></span>
+      <div>
+        <div class="result-title" id="result-title"></div>
+        <div class="result-sub"  id="result-sub"></div>
+      </div>
+    </div>
+
+    <!-- GRAPHIQUES APRÈS + EXPLICATION -->
+    <div class="charts-after">
+      <div class="chart-block">
+        <span class="chart-tag tag-apres">APRÈS</span>
+        <div class="chart-wrap">
+          <img class="chart-img" loading="lazy" decoding="async" id="chart-apres-img" src="" alt="Graphique APRÈS" />
+        </div>
+      </div>
+      <div class="chart-block">
+        <span class="chart-tag tag-expl">EXPLICATION</span>
+        <div class="chart-wrap">
+          <img class="chart-img" loading="lazy" decoding="async" id="chart-expl-img" src="" alt="Graphique EXPLICATION" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ANALYSE TEXTUELLE -->
+    <div class="expl-box">
+      <div class="expl-title">Analyse</div>
+      <ul class="expl-list" id="expl-list"></ul>
+    </div>
+
+    <!-- SOURCE — révélée uniquement en fin de session -->
+    <div class="source-box" style="display:none">
+      <div class="source-item">
+        <div class="source-label">Source</div>
+        <div class="source-val" id="source-val">—</div>
+      </div>
+    </div>
+
+    <!-- BOUTON QUESTION SUIVANTE -->
+    <button class="next-btn" id="next-btn">Question suivante →</button>
+
+  </div><!-- /result-section -->
+
+  </div><!-- /quiz-main -->
+
+  <!-- SESSION END SCREEN -->
+  <div class="session-end" id="session-end">
+    <div class="score-banner">
+      <div class="score-num" id="score-num"></div>
+      <div class="score-sub" id="score-sub"></div>
+    </div>
+    <div class="sources-title">Sources</div>
+    <div id="sources-list"></div>
+    <button class="submit-btn" id="restart-btn" style="margin-top:1.5rem;">Nouvelle session →</button>
+  </div>
+
+</div><!-- /container -->
+
+<!-- CDN Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Logique DB -->
+<script src="js/supabase.js"></script>
+<!-- Logique quiz -->
+<script src="js/quiz.js"></script>
+<!-- UI partagé (expand graphiques) -->
+<script src="js/ui.js"></script>
+
+</body>
+</html>
