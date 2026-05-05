@@ -561,7 +561,19 @@ body::before {
 .sidebar-item.disabled { opacity: 0.45; pointer-events: none; cursor: default; }
 .sidebar-item.active .sidebar-item-icon { color: var(--accent2); }
 
-.sidebar-item-icon { font-size: 15px; color: var(--muted); min-width: 20px; text-align: center; }
+.sidebar-item-icon {
+  font-size: 15px;
+  color: var(--muted);
+  min-width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: color 0.18s, transform 0.18s;
+}
+.sb-icon { width: 18px; height: 18px; display: block; }
+.sidebar-item:hover .sidebar-item-icon { color: var(--text); transform: translateX(1px); }
+.sidebar-item.active .sb-icon { stroke-width: 2; }
 .sidebar-item-name { font-size: 13px; font-weight: 600; }
 .sidebar-item-desc { font-size: 11px; color: var(--muted); margin-top: 1px; font-family: 'JetBrains Mono', monospace; }
 

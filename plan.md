@@ -79,7 +79,7 @@ Dernière mise à jour : **2026-04-30 (session 11)**
 - ✅ Contraste bouton "Valider" en dark mode corrigé
 - ✅ Responsive mobile (< 600px) — bloc global + breakpoint 380px
 - ✅ Lazy loading des images graphiques (`loading="lazy"` + `decoding="async"` sur `.chart-img`)
-- ❌ Déploiement Vercel
+- ✅ Déploiement Vercel — https://chart-quiz.vercel.app (repo: github.com/blackstoneresana-dev/ChartQuiz)
 - ❌ Tests cross-browser (Chrome, Firefox, Safari)
 - ❌ Variables d'environnement pour les clés Supabase
 
