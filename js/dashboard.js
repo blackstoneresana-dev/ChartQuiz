@@ -362,17 +362,13 @@ function renderRedoList(container, toRedo, quizType) {
   }
 
   const QUIZ_LINKS    = { direction: 'quiz.html', pa: 'post-analysis.html', wtd: 'what-do-you-do.html' };
-  const DIR_CLS       = { UP: 'redo-tag-up', DOWN: 'redo-tag-down', SIDEWAYS: 'redo-tag-side' };
   const NIVEAU_LABELS = { debutant: 'Débutant', intermediaire: 'Intermédiaire', avance: 'Avancé' };
 
   const link = QUIZ_LINKS[quizType] || 'index.html';
 
-  const itemsHTML = toRedo.map(({ question_id, count, total, rate, direction, niveau, lastDate }) => {
+  const itemsHTML = toRedo.map(({ question_id, count, total, rate, niveau, lastDate }) => {
     const num = question_id.replace(/^(q|pa|wtd)-/, '');
 
-    const dirTag = (quizType === 'direction' && direction)
-      ? `<span class="redo-tag ${DIR_CLS[direction] || ''}">${direction}</span>`
-      : '';
     const niveauTag = niveau
       ? `<span class="redo-tag redo-tag-niveau">${NIVEAU_LABELS[niveau] || niveau}</span>`
       : '';
@@ -381,7 +377,7 @@ function renderRedoList(container, toRedo, quizType) {
     <div class="redo-item">
       <div class="redo-item-left">
         <div class="redo-id">#${num}</div>
-        <div class="redo-tags">${dirTag}${niveauTag}</div>
+        <div class="redo-tags">${niveauTag}</div>
         <div class="redo-meta">${count} / ${total} · ${rate}% · dernière ${formatDate(lastDate?.slice(0, 10))}</div>
       </div>
       <div class="redo-item-right">
