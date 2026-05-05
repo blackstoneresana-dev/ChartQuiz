@@ -78,8 +78,13 @@ async function initWTDSession() {
     const profile = await getUserProfile(user.id).catch(() => null);
     updateUserDisplay(user, profile);
 
-    wtdState.sessionId        = resetSession();
-    wtdState.sessionQuestions = await loadWTDQuestionsForSession(wtdState.sessionSize);
+    wtdState.sessionId = resetSession();
+    const qid = new URLSearchParams(window.location.search).get('qid');
+    if (qid) {
+      wtdState.sessionQuestions = [await loadWTDQuestionById(qid)];
+    } else {
+      wtdState.sessionQuestions = await loadWTDQuestionsForSession(wtdState.sessionSize);
+    }
     wtdState.sessionIndex     = 0;
     wtdState.sessionResults   = [];
     wtdState.currentQuestion  = wtdState.sessionQuestions[0];

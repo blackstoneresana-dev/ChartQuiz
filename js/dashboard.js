@@ -125,23 +125,38 @@ function computeQuizStats(responses, levelMap, quizType) {
   const rate    = Math.round(correct / total * 100);
   const lastDate = responses[responses.length - 1]?.created_at?.slice(0, 10);
 
-  const wrongMap = {};
+  // Stats par question : total tentatives, erreurs, taux, dernière tentative
+  const perQuestion = {};
   for (const r of responses) {
-    if (!r.est_correcte) {
-      const key = r.question_id;
-      if (!wrongMap[key]) {
-        wrongMap[key] = {
-          count:       0,
-          question_id: r.question_id,
-          direction:   null,
-          niveau:      levelMap[r.question_id] || null,
-        };
-      }
-      wrongMap[key].count++;
-      if (r.direction) wrongMap[key].direction = r.direction;
+    const key = r.question_id;
+    if (!perQuestion[key]) {
+      perQuestion[key] = {
+        question_id: key,
+        total:       0,
+        correct:     0,
+        wrong:       0,
+        direction:   null,
+        niveau:      levelMap[key] || null,
+        lastDate:    null,
+      };
     }
+    const q = perQuestion[key];
+    q.total++;
+    if (r.est_correcte) q.correct++;
+    else q.wrong++;
+    if (r.direction) q.direction = r.direction;
+    if (!q.lastDate || r.created_at > q.lastDate) q.lastDate = r.created_at;
   }
-  const toRedo = Object.values(wrongMap).sort((a, b) => b.count - a.count).slice(0, 5);
+
+  // À retravailler : ≥1 erreur ET taux de réussite ≤ 90%
+  const toRedo = Object.values(perQuestion)
+    .filter(q => q.wrong >= 1 && (q.correct / q.total) * 100 <= 90)
+    .map(q => ({
+      ...q,
+      rate:  Math.round((q.correct / q.total) * 100),
+      count: q.wrong,
+    }))
+    .sort((a, b) => a.rate - b.rate || b.wrong - a.wrong);
 
   let byDirection = null;
   if (quizType === 'direction') {
@@ -352,7 +367,7 @@ function renderRedoList(container, toRedo, quizType) {
 
   const link = QUIZ_LINKS[quizType] || 'index.html';
 
-  container.innerHTML = toRedo.map(({ question_id, count, direction, niveau }) => {
+  const itemsHTML = toRedo.map(({ question_id, count, total, rate, direction, niveau, lastDate }) => {
     const num = question_id.replace(/^(q|pa|wtd)-/, '');
 
     const dirTag = (quizType === 'direction' && direction)
@@ -367,13 +382,15 @@ function renderRedoList(container, toRedo, quizType) {
       <div class="redo-item-left">
         <div class="redo-id">#${num}</div>
         <div class="redo-tags">${dirTag}${niveauTag}</div>
+        <div class="redo-meta">${count} / ${total} · ${rate}% · dernière ${formatDate(lastDate?.slice(0, 10))}</div>
       </div>
       <div class="redo-item-right">
-        <span class="redo-count">${count} erreur${count > 1 ? 's' : ''}</span>
-        <a class="rejouer-btn" href="${link}">Rejouer →</a>
+        <a class="rejouer-btn" href="${link}?qid=${encodeURIComponent(question_id)}">Rejouer →</a>
       </div>
     </div>`;
   }).join('');
+
+  container.innerHTML = `<div class="redo-scroll">${itemsHTML}</div>`;
 }
 
 // ── COURBE DE PERFORMANCE ─────────────────────────────────────

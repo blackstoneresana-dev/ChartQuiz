@@ -77,8 +77,13 @@ async function initPASession() {
     const profile = await getUserProfile(user.id).catch(() => null);
     updateUserDisplay(user, profile);
 
-    paState.sessionId        = resetSession();
-    paState.sessionQuestions = await loadPAQuestionsForSession(paState.sessionSize);
+    paState.sessionId = resetSession();
+    const qid = new URLSearchParams(window.location.search).get('qid');
+    if (qid) {
+      paState.sessionQuestions = [await loadPAQuestionById(qid)];
+    } else {
+      paState.sessionQuestions = await loadPAQuestionsForSession(paState.sessionSize);
+    }
     paState.sessionIndex     = 0;
     paState.sessionResults   = [];
     paState.currentQuestion  = paState.sessionQuestions[0];

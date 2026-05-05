@@ -1167,6 +1167,20 @@ body::before {
   gap: 10px;
   flex-shrink: 0;
 }
+.redo-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.redo-scroll {
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.redo-scroll::-webkit-scrollbar { width: 6px; }
+.redo-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+.redo-scroll::-webkit-scrollbar-track { background: transparent; }
 
 /* CTA pleine largeur */
 .cta-nouveau-quiz {

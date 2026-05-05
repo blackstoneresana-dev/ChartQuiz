@@ -100,8 +100,14 @@ async function initSession(n = quizState.sessionSize) {
     const profile = await getUserProfile(user.id).catch(() => null);
     updateUserDisplay(user, profile);
 
-    quizState.sessionId        = resetSession();
-    quizState.sessionQuestions = await loadQuestionsForSession(n);
+    quizState.sessionId = resetSession();
+
+    const qid = new URLSearchParams(window.location.search).get('qid');
+    if (qid) {
+      quizState.sessionQuestions = [await loadQuestionById(qid)];
+    } else {
+      quizState.sessionQuestions = await loadQuestionsForSession(n);
+    }
     quizState.sessionIndex     = 0;
     quizState.sessionResults   = [];
     quizState.currentQuestion  = quizState.sessionQuestions[0];
