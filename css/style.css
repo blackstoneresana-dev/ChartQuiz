@@ -150,7 +150,7 @@ body::before {
 .chart-tag {
   display: inline-block;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   padding: 3px 10px;
   border-radius: 4px;
@@ -328,7 +328,7 @@ body::before {
 .char-count {
   text-align: right;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted);
   margin-top: 5px;
   transition: color 0.18s;
@@ -575,11 +575,11 @@ body::before {
 .sidebar-item:hover .sidebar-item-icon { color: var(--text); transform: translateX(1px); }
 .sidebar-item.active .sb-icon { stroke-width: 2; }
 .sidebar-item-name { font-size: 13px; font-weight: 600; }
-.sidebar-item-desc { font-size: 11px; color: var(--muted); margin-top: 1px; font-family: 'JetBrains Mono', monospace; }
+.sidebar-item-desc { font-size: 12px; color: var(--muted); margin-top: 1px; font-family: 'JetBrains Mono', monospace; }
 
 .sidebar-item-badge {
   margin-left: auto; font-family: 'JetBrains Mono', monospace;
-  font-size: 9px; letter-spacing: 0.06em;
+  font-size: 10px; letter-spacing: 0.06em;
   padding: 2px 7px; border-radius: 20px;
   background: var(--bg3); color: var(--muted);
   border: 1px solid var(--border2);
@@ -690,7 +690,7 @@ body::before {
 }
 .source-row.correct { border-left-color: var(--up); }
 .source-row.wrong   { border-left-color: var(--down); }
-.source-row-num  { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); min-width: 18px; }
+.source-row-num  { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); min-width: 18px; }
 .source-row-icon { font-size: 14px; font-weight: 700; }
 .source-row.correct .source-row-icon { color: var(--up); }
 .source-row.wrong   .source-row-icon { color: var(--down); }
@@ -793,7 +793,7 @@ body::before {
 /* User badge dans le header */
 .user-badge {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.06em;
   padding: 4px 10px;
@@ -854,7 +854,7 @@ body::before {
 
 .dash-section-title {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   color: var(--muted);
   text-transform: uppercase;
@@ -876,7 +876,7 @@ body::before {
 
 .stat-card-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.1em;
   color: var(--muted);
   text-transform: uppercase;
@@ -919,7 +919,7 @@ body::before {
 .mini-card-icon  { font-size: 16px; color: var(--muted); margin-bottom: 4px; }
 .mini-card-name  {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   color: var(--muted);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -927,7 +927,7 @@ body::before {
 }
 .mini-card-rate  { font-size: 22px; font-weight: 800; color: var(--text); line-height: 1; }
 .mini-card-detail {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted);
   margin-top: 4px;
   font-family: 'JetBrains Mono', monospace;
@@ -956,7 +956,7 @@ body::before {
   border-left: 3px solid rgba(255,77,106,0.5);
 }
 .redo-id    { font-size: 13px; font-weight: 600; color: var(--text); }
-.redo-count { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--down); }
+.redo-count { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--down); }
 .redo-empty {
   font-size: 13px;
   color: var(--muted);
@@ -1117,7 +1117,7 @@ body::before {
 .redo-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 4px; }
 .redo-tag {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.06em;
   padding: 2px 7px;
   border-radius: 4px;
@@ -1181,7 +1181,7 @@ body::before {
 }
 .redo-meta {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   margin-top: 4px;
 }
@@ -1397,7 +1397,7 @@ body::before {
 .compare-card-pa::before  { background: var(--up); }
 .compare-card-wtd::before { background: var(--side); }
 .compare-card-name {
-  font-size: 10px;
+  font-size: 11px;
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: 0.08em;
   color: var(--muted);
@@ -1412,7 +1412,7 @@ body::before {
   margin-bottom: 0.25rem;
 }
 .compare-card-detail {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   font-family: 'JetBrains Mono', monospace;
   margin-bottom: 1rem;
@@ -1451,7 +1451,7 @@ body::before {
 
 @media (max-width: 600px) {
   .compare-grid { grid-template-columns: 1fr; }
-  .dash-tab { font-size: 10px; padding: 7px 6px; }
+  .dash-tab { font-size: 11px; padding: 7px 6px; }
 }
 
 /* ── PA SPLIT RIGHT/WRONG ────────────────────────────────── */
@@ -1469,7 +1469,7 @@ body::before {
   text-align: center;
 }
 .pa-split-label {
-  font-size: 10px;
+  font-size: 11px;
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1482,7 +1482,7 @@ body::before {
   margin-bottom: 0.25rem;
 }
 .pa-split-sub {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   font-family: 'JetBrains Mono', monospace;
 }
@@ -1509,7 +1509,7 @@ body::before {
   .header                { margin-bottom: 1rem; padding-bottom: 1rem; }
   .logo                  { font-size: 13px; letter-spacing: 0.08em; }
   .level-badge,
-  .user-badge            { font-size: 10px; padding: 3px 9px; }
+  .user-badge            { font-size: 11px; padding: 3px 9px; }
   .theme-btn,
   .logout-btn            { font-size: 13px; padding: 3px 8px; }
   .sidebar-toggle        { width: 20px; height: 14px; margin-right: 10px; }
