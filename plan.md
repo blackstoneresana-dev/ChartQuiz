@@ -1,7 +1,7 @@
 # plan.md — ChartQuiz
 
 **Source de vérité unique** pour l'avancement du projet. Mis à jour à chaque session.
-Dernière mise à jour : **2026-04-30 (session 11)**
+Dernière mise à jour : **2026-05-07 (session 12)**
 
 ---
 
@@ -42,7 +42,7 @@ Dernière mise à jour : **2026-04-30 (session 11)**
 
 ## Phase 4 — Page d'accueil ✅
 
-- ✅ `index.html` + `js/index.js` — 3 cards de quiz, lien dashboard, auth redirect
+- ✅ `index.html` + `js/index.js` — 2 cards de quiz, lien dashboard, auth redirect
 
 ---
 
@@ -99,6 +99,17 @@ Dernière mise à jour : **2026-04-30 (session 11)**
 - Dossiers : `ChartQuiz_01/Question/q001→q025`, `PA_Quiz/pa001→pa099`
 - Naming PA : `chart_pa{NNN}_{avant_1|avant_2|apres_1|apres_2}_{suffix}.png`
 - Dossiers `trading-errors/` (AUDJPY, GBPJPY, NZDCHF, NZDJPY, WTICOUSD) — non importés
+
+---
+
+## Session 12 — 2026-05-07
+
+- ✅ Suppression complète format **What Do You Do** (commit d90eb1b) — fichiers HTML/JS/CSS/SQL purgés, sidebar/cards/tabs retirés, docs MAJ (3 → 2 formats)
+- ✅ Polices petits textes +1px (tags/labels/meta 8-11px) — commit 5e20e31
+- ✅ Sidebar — icônes Unicode remplacées par SVG Lucide (commit 3b1b767)
+- ✅ Dashboard — tag direction retiré liste à retravailler (fuitait réponse) — commit 2909f04
+- ✅ Dashboard — logique liste à retravailler + deep-link Rejouer (commit 543d15e)
+- ✅ Cleanup DB Supabase — tables `wtd_questions`, `wtd_options`, `wtd_images`, `wtd_responses` droppées (`csv/wtd_cleanup.sql`)
 
 ---
 
