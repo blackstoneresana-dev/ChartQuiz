@@ -333,17 +333,6 @@ function showSessionEnd() {
     ? 'Bon travail !'
     : "Continue à t'entraîner !";
 
-  const sourcesList = $('sources-list');
-  if (sourcesList) {
-    sourcesList.innerHTML = results.map((r, i) => `
-      <div class="source-row ${r.est_correcte ? 'correct' : 'wrong'}">
-        <span class="source-row-num">${i + 1}</span>
-        <span class="source-row-icon">${r.est_correcte ? '✓' : '✗'}</span>
-        <span class="source-row-info">${r.image.source_info ?? '—'}</span>
-      </div>
-    `).join('');
-  }
-
   $('quiz-main')?.classList.add('hidden');
   $('session-end')?.classList.add('visible');
   window.scrollTo({ top: 0, behavior: 'smooth' });

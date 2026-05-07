@@ -89,7 +89,6 @@ question_id      uuid REFERENCES questions(id)
 url_avant        text NOT NULL      -- URL Cloudinary
 url_apres        text NOT NULL      -- URL Cloudinary
 url_explication  text NOT NULL      -- URL Cloudinary
-source_info      text               -- révélé uniquement à la fin du test
 ```
 
 ### Table : `users`
@@ -361,7 +360,7 @@ En mode nuit, surcharger `.expl-list li` :
    - Afficher le texte d'analyse
    - Scroll automatique vers la section résultat
 
-3. **À la fin du test complet** : révéler `source_info` (paire, timeframe, date, broker) pour chaque question.
+3. **À la fin du test complet** : afficher écran score (corrects/total).
 
 4. **La bonne réponse** vient de `options` où `est_correcte = true`.
    La valeur est `'UP'`, `'DOWN'` ou `'SIDEWAYS'`.
@@ -450,8 +449,6 @@ function buildActiveQuery(niveau) { /* filtre actif + niveau */ }
 
 ## Ce qu'il ne faut jamais faire
 
-- Ne jamais afficher `source_info` pendant le quiz
-- Ne jamais afficher le timeframe, la paire ou la date avant la fin du test
 - Ne jamais mettre `position: absolute` sur un `.chart-tag`
 - Ne jamais mettre le `.chart-tag` à l'intérieur du `.chart-wrap`
 - Ne jamais mettre les graphiques APRÈS et EXPLICATION côte à côte — toujours empilés

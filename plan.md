@@ -110,6 +110,8 @@ Dernière mise à jour : **2026-05-07 (session 12)**
 - ✅ Dashboard — tag direction retiré liste à retravailler (fuitait réponse) — commit 2909f04
 - ✅ Dashboard — logique liste à retravailler + deep-link Rejouer (commit 543d15e)
 - ✅ Cleanup DB Supabase — tables `wtd_questions`, `wtd_options`, `wtd_images`, `wtd_responses` droppées (`csv/wtd_cleanup.sql`)
+- ✅ Suppression reveal `source_info` Direction Quiz — `.source-box`, `.sources-title`, `.source-row*` retirés (HTML/JS/CSS), CLAUDE.md MAJ
+- ✅ Drop colonne `images.source_info` Supabase (`csv/source_info_cleanup.sql`)
 
 ---
 

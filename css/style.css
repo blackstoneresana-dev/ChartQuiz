@@ -451,32 +451,6 @@ body::before {
   padding-top: 1px;
 }
 
-/* ── BOÎTE SOURCE (révélée à la fin) ─────────────────────── */
-.source-box {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.source-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.source-val {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text);
-}
-
 .divider {
   border: none;
   border-top: 1px solid var(--border);
@@ -667,33 +641,6 @@ body::before {
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: 0.06em;
 }
-.sources-title {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--side);
-  text-transform: uppercase;
-  margin-bottom: 0.75rem;
-}
-.source-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--border);
-}
-.source-row.correct { border-left-color: var(--up); }
-.source-row.wrong   { border-left-color: var(--down); }
-.source-row-num  { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); min-width: 18px; }
-.source-row-icon { font-size: 14px; font-weight: 700; }
-.source-row.correct .source-row-icon { color: var(--up); }
-.source-row.wrong   .source-row-icon { color: var(--down); }
-.source-row-info { font-size: 13px; font-weight: 500; color: var(--text); }
-
 /* ── ANIMATIONS ──────────────────────────────────────────── */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -1443,7 +1390,6 @@ body::before {
   .next-btn              { font-size: 13px; padding: 11px 18px; }
 
   .expl-box              { padding: 1.1rem; }
-  .source-box            { padding: 10px 12px; gap: 6px; }
 
   .pa-split-row          { flex-direction: column; gap: 8px; }
   .pa-split-num          { font-size: 24px; }
