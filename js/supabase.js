@@ -149,16 +149,6 @@ async function loadPAUserResponses(userId) {
   return (data ?? []).map(r => ({ ...r, quiz_type: 'pa', direction: null }));
 }
 
-async function loadWTDUserResponses(userId) {
-  const { data, error } = await db
-    .from('wtd_responses')
-    .select('est_correcte, question_id, created_at')
-    .eq('user_id', userId)
-    .order('created_at', { ascending: true });
-  if (error) throw new Error(`Chargement historique WTD échoué : ${error.message}`);
-  return (data ?? []).map(r => ({ ...r, quiz_type: 'wtd', direction: null }));
-}
-
 async function loadQuestionsLevels() {
   const { data, error } = await db
     .from('questions')
@@ -201,36 +191,3 @@ async function savePAResponse({ question_id, session_id, choix, est_correcte, us
   if (error) throw new Error(`Sauvegarde PA réponse échouée : ${error.message}`);
 }
 
-// ── WHAT DO YOU DO ────────────────────────────────────────────
-async function loadWTDQuestionById(id) {
-  const [qRes, optsRes, imgRes] = await Promise.all([
-    db.from('wtd_questions').select('*').eq('id', id).single(),
-    db.from('wtd_options').select('*').eq('question_id', id),
-    db.from('wtd_images').select('*').eq('question_id', id).single(),
-  ]);
-  if (qRes.error)   throw new Error(`WTD Question introuvable (${id}) : ${qRes.error.message}`);
-  if (imgRes.error) throw new Error(`WTD Image introuvable (${id}) : ${imgRes.error.message}`);
-  return { question: qRes.data, options: optsRes.data ?? [], image: imgRes.data };
-}
-
-async function loadWTDQuestionsForSession(count = 5) {
-  const { data: all, error } = await db
-    .from('wtd_questions')
-    .select('id')
-    .eq('actif', true);
-  if (error)        throw new Error(`Chargement WTD session échoué : ${error.message}`);
-  if (!all?.length) throw new Error('Aucune question What Do You Do disponible');
-  const shuffled = all.sort(() => Math.random() - 0.5).slice(0, count);
-  return Promise.all(shuffled.map(q => loadWTDQuestionById(q.id)));
-}
-
-async function saveWTDResponse({ question_id, session_id, option_id, est_correcte, user_id = null }) {
-  const { error } = await db.from('wtd_responses').insert({
-    question_id,
-    session_id,
-    option_id,
-    est_correcte,
-    user_id,
-  });
-  if (error) throw new Error(`Sauvegarde WTD réponse échouée : ${error.message}`);
-}

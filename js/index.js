@@ -67,11 +67,6 @@ async function init() {
   await ensureUserProfile(user.id, user.email, user.user_metadata?.pseudo).catch(() => null);
   const profile = await getUserProfile(user.id).catch(() => null);
   updateUserDisplay(user, profile);
-
-  // Compte les questions WTD actives
-  const { count } = await db.from('wtd_questions').select('*', { count: 'exact', head: true }).eq('actif', true);
-  const wtdCount = $('wtd-count');
-  if (wtdCount) wtdCount.textContent = `${count ?? '—'} question${count > 1 ? 's' : ''}`;
 }
 
 document.addEventListener('DOMContentLoaded', init);

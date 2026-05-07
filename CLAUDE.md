@@ -7,11 +7,10 @@ Lis ce fichier en entier avant d'écrire ou de modifier du code.
 
 ## Présentation du projet
 
-**ChartQuiz** est un site web de quiz interactif pour traders, avec 3 formats de quiz :
+**ChartQuiz** est un site web de quiz interactif pour traders, avec 2 formats de quiz :
 
 1. **Direction Quiz** — le trader voit un graphique AVANT, choisit UP/DOWN/SIDEWAYS, valide, puis découvre le graphique APRÈS + EXPLICATION + analyse. À la fin de la session, les sources (paire, timeframe, date, broker) sont révélées.
 2. **Post Analysis** — le trader voit 2 graphiques AVANT un trade et juge si c'était RIGHT ou WRONG, puis voit les 2 graphiques APRÈS.
-3. **What Do You Do** — le trader voit 1 graphique AVANT, choisit parmi 3 options textuelles d'action, puis voit le graphique APRÈS + EXPLICATION.
 
 Un dashboard personnel permet de suivre ses statistiques et de retravailler ses erreurs.
 Un système d'authentification (Supabase Auth) gère les comptes utilisateurs.
@@ -41,7 +40,6 @@ chartquiz/
 ├── index.html                       ← page d'accueil (❌ non commencée)
 ├── quiz.html                        ← Direction Quiz (✅ FONCTIONNEL)
 ├── post-analysis.html               ← Post Analysis (✅ FONCTIONNEL)
-├── what-do-you-do.html              ← What Do You Do (✅ FONCTIONNEL)
 ├── dashboard.html                   ← Dashboard stats (✅ FONCTIONNEL)
 ├── auth.html                        ← Login/Signup (✅ FONCTIONNEL)
 ├── chartquiz_simulation.html        ← référence visuelle (ne pas modifier)
@@ -51,16 +49,13 @@ chartquiz/
 │   ├── supabase.js                  ← client Supabase + toutes les fonctions DB
 │   ├── quiz.js                      ← logique Direction Quiz
 │   ├── post-analysis.js             ← logique Post Analysis
-│   ├── what-do-you-do.js            ← logique What Do You Do
 │   ├── dashboard.js                 ← logique Dashboard
 │   └── auth.js                      ← logique Auth
 └── csv/
     ├── QUESTIONS.csv / OPTIONS.csv / IMAGES.csv   ← Direction Quiz
     ├── import_q005_q025.sql                        ← import q-005 à q-025
     ├── PA_IMAGES.csv                               ← Post Analysis
-    ├── pa_schema.sql / pa_import_pa001.sql
-    ├── WTD_IMAGES.csv                              ← What Do You Do
-    └── wtd_schema.sql / wtd_import_wtd001.sql
+    └── pa_schema.sql / pa_import_pa001.sql
 ```
 
 ---
@@ -122,12 +117,6 @@ created_at       timestamp DEFAULT now()
 — `pa_questions` : id, titre, niveau, explication_texte, actif, created_at
 — `pa_images` : id, question_id, url_avant_1, url_avant_2, url_apres_1, url_apres_2, source_info
 — `pa_responses` : id, user_id, question_id, session_id, choix (RIGHT/WRONG), est_correcte, created_at
-
-### Tables What Do You Do : `wtd_questions`, `wtd_options`, `wtd_images`, `wtd_responses`
-— `wtd_questions` : id, titre, niveau, explication_texte, actif, created_at
-— `wtd_options` : id, question_id, texte (option textuelle), est_correcte
-— `wtd_images` : id, question_id, url_avant, url_apres, url_explication, source_info
-— `wtd_responses` : id, user_id, question_id, session_id, option_id, est_correcte, created_at
 
 **Important Supabase** : toujours inclure `TO anon, authenticated` dans les GRANT — oublier `authenticated` = "permission denied" pour les users connectés.
 
@@ -341,7 +330,6 @@ En mode nuit, surcharger `.expl-list li` :
 **Sessions dans le sidebar :**
 - `Direction Quiz` — actif (`.active`), fond violet `rgba(124,106,255,0.12)`
 - `Post Analysis` — actif (`.active`), lien vers `post-analysis.html`
-- `What Do You Do` — actif (`.active`), lien vers `what-do-you-do.html`
 
 #### Boîte source (révélée à la fin)
 ```css
@@ -496,7 +484,6 @@ Tous partagent le même design system et le même sidebar de navigation.
 |---|---|---|
 | **Direction Quiz** | ✅ Actif | Prédire UP/DOWN/SIDEWAYS — q-001 à q-025 en base |
 | **Post Analysis** | ✅ Actif | Juger si un trade était RIGHT/WRONG — pa-001 en base, pa-002→pa-005 à importer |
-| **What Do You Do** | ✅ Actif | Choisir la bonne action parmi 3 options — wtd-001 en base, wtd-002→wtd-005 à importer |
 
 ---
 

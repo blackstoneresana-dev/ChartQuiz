@@ -49,7 +49,7 @@
   }
   .quiz-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     margin-bottom: 2rem;
   }
@@ -75,7 +75,6 @@
   }
   .quiz-card-dir::before  { background: var(--accent); }
   .quiz-card-pa::before   { background: var(--up); }
-  .quiz-card-wtd::before  { background: var(--side); }
 
   .quiz-card:hover { border-color: var(--border2); transform: translateY(-2px); }
 
@@ -138,11 +137,9 @@
   }
   .quiz-card-dir .quiz-card-cta  { background: var(--accent);  color: #fff; }
   .quiz-card-pa  .quiz-card-cta  { background: var(--up);      color: #fff; }
-  .quiz-card-wtd .quiz-card-cta  { background: var(--side);    color: #080808; }
 
   .quiz-card-dir .quiz-card-cta:hover  { opacity: 0.85; transform: translateY(-1px); }
   .quiz-card-pa  .quiz-card-cta:hover  { opacity: 0.85; transform: translateY(-1px); }
-  .quiz-card-wtd .quiz-card-cta:hover  { opacity: 0.85; transform: translateY(-1px); }
 
   /* ── DASHBOARD TEASER ────────────────────────────────────── */
   .dash-teaser {
@@ -235,13 +232,6 @@
         <div class="sidebar-item-desc">Analyser après coup</div>
       </div>
     </a>
-    <a class="sidebar-item" href="what-do-you-do.html">
-      <span class="sidebar-item-icon"><svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
-      <div>
-        <div class="sidebar-item-name">What Do You Do</div>
-        <div class="sidebar-item-desc">Réagir en temps réel</div>
-      </div>
-    </a>
   </nav>
 </aside>
 
@@ -264,7 +254,7 @@
   <div class="hero">
     <div class="hero-label">ChartQuiz — Plateforme d'entraînement</div>
     <h1 class="hero-title">Affûte ta lecture<br><span>du marché.</span></h1>
-    <p class="hero-sub">3 formats de quiz pour analyser tes trades, améliorer ta lecture du prix et corriger tes erreurs.</p>
+    <p class="hero-sub">2 formats de quiz pour analyser tes trades, améliorer ta lecture du prix et corriger tes erreurs.</p>
   </div>
 
   <!-- QUIZ CARDS -->
@@ -293,18 +283,6 @@
         <span class="quiz-card-badge">10 / session</span>
       </div>
       <a class="quiz-card-cta" href="post-analysis.html">Démarrer →</a>
-    </div>
-
-    <!-- What Do You Do -->
-    <div class="quiz-card quiz-card-wtd">
-      <div class="quiz-card-icon">A·B·C</div>
-      <div class="quiz-card-name">What Do You Do</div>
-      <div class="quiz-card-desc">Face à une situation de marché, choisis la bonne action parmi 3 options.</div>
-      <div class="quiz-card-meta">
-        <span class="quiz-card-count" id="wtd-count">— questions</span>
-        <span class="quiz-card-badge">5 / session</span>
-      </div>
-      <a class="quiz-card-cta" href="what-do-you-do.html">Démarrer →</a>
     </div>
 
   </div>

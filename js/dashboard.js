@@ -49,19 +49,18 @@ async function initDashboard() {
     const profile = await getUserProfile(user.id).catch(() => null);
     updateUserDisplay(user, profile);
 
-    const [dirResponses, paResponses, wtdResponses, questions] = await Promise.all([
+    const [dirResponses, paResponses, questions] = await Promise.all([
       loadUserResponses(user.id),
       loadPAUserResponses(user.id),
-      loadWTDUserResponses(user.id),
       loadQuestionsLevels(),
     ]);
 
-    const allResponses = [...dirResponses, ...paResponses, ...wtdResponses];
+    const allResponses = [...dirResponses, ...paResponses];
 
     if (allResponses.length === 0) {
       showEmpty();
     } else {
-      const stats = computeAllStats(dirResponses, paResponses, wtdResponses, questions);
+      const stats = computeAllStats(dirResponses, paResponses, questions);
       renderDashboard(stats);
     }
   } catch (e) {
@@ -74,8 +73,8 @@ async function initDashboard() {
 }
 
 // ── CALCUL DES STATS ──────────────────────────────────────────
-function computeAllStats(dirResponses, paResponses, wtdResponses, questions) {
-  const allResponses = [...dirResponses, ...paResponses, ...wtdResponses]
+function computeAllStats(dirResponses, paResponses, questions) {
+  const allResponses = [...dirResponses, ...paResponses]
     .sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
 
   const total = allResponses.length;
@@ -111,7 +110,6 @@ function computeAllStats(dirResponses, paResponses, wtdResponses, questions) {
     allResponses,
     dir: computeQuizStats(dirResponses, levelMap, 'direction'),
     pa:  computeQuizStats(paResponses,  levelMap, 'pa'),
-    wtd: computeQuizStats(wtdResponses, levelMap, 'wtd'),
   };
 }
 
@@ -190,7 +188,6 @@ function renderDashboard(stats) {
   renderCompareCards(stats);
   renderDirectionTab(stats.dir);
   renderPATab(stats.pa);
-  renderWTDTab(stats.wtd);
   renderPerfChart(stats.allResponses);
   renderActivity(stats.activity);
   switchTab(dashState.activeTab);
@@ -212,14 +209,13 @@ function renderOverviewKPI({ total, streak, activeDays }) {
   if (activeDaysEl) activeDaysEl.textContent = activeDays;
 }
 
-function renderCompareCards({ dir, pa, wtd }) {
+function renderCompareCards({ dir, pa }) {
   const container = $('compare-grid');
   if (!container) return;
 
   const cards = [
     { cls: 'compare-card-dir', name: 'Direction Quiz',  stats: dir, tab: 'direction' },
     { cls: 'compare-card-pa',  name: 'Post Analysis',   stats: pa,  tab: 'pa'        },
-    { cls: 'compare-card-wtd', name: 'What Do You Do',  stats: wtd, tab: 'wtd'       },
   ];
 
   container.innerHTML = cards.map(({ cls, name, stats, tab }) => {
@@ -334,25 +330,6 @@ function renderPATab(pa) {
   renderRedoList($('pa-redo-list'), pa.toRedo, 'pa');
 }
 
-function renderWTDTab(wtd) {
-  const kpiRow = $('wtd-kpi-row');
-  if (kpiRow) {
-    kpiRow.innerHTML = `
-      <div class="stat-card">
-        <div class="stat-card-label">Taux de réussite</div>
-        <div class="stat-big-num">${wtd.rate !== null ? wtd.rate + '%' : '—'}</div>
-        <div class="stat-card-detail">${wtd.correct} / ${wtd.total} correctes</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-label">Réponses</div>
-        <div class="stat-big-num">${wtd.total || '—'}</div>
-        <div class="stat-card-detail">${wtd.lastDate ? 'Dernière : ' + formatDate(wtd.lastDate) : 'Aucune session'}</div>
-      </div>`;
-  }
-
-  renderRedoList($('wtd-redo-list'), wtd.toRedo, 'wtd');
-}
-
 function renderRedoList(container, toRedo, quizType) {
   if (!container) return;
 
@@ -361,13 +338,13 @@ function renderRedoList(container, toRedo, quizType) {
     return;
   }
 
-  const QUIZ_LINKS    = { direction: 'quiz.html', pa: 'post-analysis.html', wtd: 'what-do-you-do.html' };
+  const QUIZ_LINKS    = { direction: 'quiz.html', pa: 'post-analysis.html' };
   const NIVEAU_LABELS = { debutant: 'Débutant', intermediaire: 'Intermédiaire', avance: 'Avancé' };
 
   const link = QUIZ_LINKS[quizType] || 'index.html';
 
   const itemsHTML = toRedo.map(({ question_id, count, total, rate, niveau, lastDate }) => {
-    const num = question_id.replace(/^(q|pa|wtd)-/, '');
+    const num = question_id.replace(/^(q|pa)-/, '');
 
     const niveauTag = niveau
       ? `<span class="redo-tag redo-tag-niveau">${NIVEAU_LABELS[niveau] || niveau}</span>`
@@ -531,7 +508,7 @@ function renderActivity(activity) {
 
 // ── TABS ──────────────────────────────────────────────────────
 function switchTab(tabName) {
-  const validTabs = ['all', 'direction', 'pa', 'wtd'];
+  const validTabs = ['all', 'direction', 'pa'];
   if (!validTabs.includes(tabName)) tabName = 'all';
 
   dashState.activeTab = tabName;
