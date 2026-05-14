@@ -139,6 +139,8 @@ function updateThemeBtn() {
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
   const btn    = $('theme-btn');
   if (btn) btn.textContent = isDark ? '☀' : '☽';
+  const m = document.querySelector('meta[name="theme-color"]');
+  if (m) m.content = isDark ? '#0a0a0f' : '#ffffff';
 }
 
 function toggleTheme() {
