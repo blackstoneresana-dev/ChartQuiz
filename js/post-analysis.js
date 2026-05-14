@@ -271,6 +271,31 @@ function paShowSessionEnd() {
 
 async function paRestartSession() {
   $('pa-session-end')?.classList.remove('visible');
+  const currentQid = new URLSearchParams(window.location.search).get('qid');
+  if (currentQid) {
+    try {
+      const responses = await loadPAUserResponses(paState.userId);
+      const perQuestion = {};
+      for (const r of responses) {
+        const key = r.question_id;
+        if (!perQuestion[key]) perQuestion[key] = { question_id: key, correct: 0, wrong: 0, total: 0 };
+        perQuestion[key].total++;
+        if (r.est_correcte) perQuestion[key].correct++;
+        else perQuestion[key].wrong++;
+      }
+      const toRedo = Object.values(perQuestion)
+        .filter(q => q.wrong >= 1 && (q.correct / q.total) * 100 <= 80 && q.question_id !== currentQid)
+        .map(q => q.question_id);
+      if (toRedo.length > 0) {
+        const randomQid = toRedo[Math.floor(Math.random() * toRedo.length)];
+        window.location.href = `post-analysis.html?qid=${encodeURIComponent(randomQid)}`;
+        return;
+      }
+      window.history.replaceState({}, '', 'post-analysis.html');
+    } catch (e) {
+      console.error('[ChartQuiz] Erreur retake random PA:', e);
+    }
+  }
   await initPASession();
 }
 

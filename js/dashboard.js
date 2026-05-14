@@ -146,9 +146,9 @@ function computeQuizStats(responses, levelMap, quizType) {
     if (!q.lastDate || r.created_at > q.lastDate) q.lastDate = r.created_at;
   }
 
-  // À retravailler : ≥1 erreur ET taux de réussite ≤ 90%
+  // À retravailler : ≥1 erreur ET taux de réussite ≤ 80%
   const toRedo = Object.values(perQuestion)
-    .filter(q => q.wrong >= 1 && (q.correct / q.total) * 100 <= 90)
+    .filter(q => q.wrong >= 1 && (q.correct / q.total) * 100 <= 80)
     .map(q => ({
       ...q,
       rate:  Math.round((q.correct / q.total) * 100),
