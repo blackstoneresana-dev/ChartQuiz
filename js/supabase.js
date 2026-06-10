@@ -128,6 +128,20 @@ async function signOut() {
   if (error) throw new Error(`Déconnexion échouée : ${error.message}`);
 }
 
+// Envoie l'email de récupération — le lien ramène sur auth.html (flow recovery)
+async function sendPasswordReset(email) {
+  const { error } = await db.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/auth.html`,
+  });
+  if (error) throw new Error(`Envoi du lien échoué : ${error.message}`);
+}
+
+// Définit un nouveau mot de passe (session recovery active requise)
+async function updatePassword(newPassword) {
+  const { error } = await db.auth.updateUser({ password: newPassword });
+  if (error) throw new Error(`Mise à jour échouée : ${error.message}`);
+}
+
 // ── DASHBOARD ─────────────────────────────────────────────────
 async function loadUserResponses(userId) {
   const { data, error } = await db
