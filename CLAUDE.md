@@ -209,7 +209,7 @@ CREATE POLICY "select own" ON public.ma_table
 - Appliquer `data-theme="dark"` sur `<html>` pour activer le mode nuit
 - Sauvegarder le choix dans `localStorage` clé `chartquiz-theme`
 - Au chargement, lire `localStorage` et appliquer le thème avant le premier rendu (évite le flash)
-- Le bouton se place dans le header, coin supérieur droit, à côté du badge de niveau
+- Le bouton se place dans la **sidebar**, rangée `.sidebar-user-row` (badge user + déconnexion + thème), sous le logo
 - Icône : ☀ (jour) / ☽ (nuit) — texte simple, pas d'image
 - Transition sur `background` et `color` : `transition: background 0.25s, color 0.25s`
 
@@ -356,8 +356,10 @@ En mode nuit, surcharger `.expl-list li` :
 ```
 **Structure HTML :**
 - `.sidebar-overlay` et `<aside class="sidebar">` sont placés **avant** `.container`, directement sous `<body>`
-- Le bouton hamburger est le **premier enfant** du `.header`, avant `.logo`
-- Le bouton thème ☽/☀ est dans un `<div style="display:flex">` avec `.level-badge`, côté droit du header
+- Le `.header` (top bar) contient **uniquement** le bouton hamburger — pas de logo, pas de bordure basse
+- Le logo `ChartQuiz` est dans le `.sidebar-header` (remplace l'ancien titre "Sessions"/"Navigation")
+- Sous le `.sidebar-header` : rangée `.sidebar-user-row` alignée horizontale — badge user (`#user-badge`, flex:1) + bouton déconnexion (`#logout-btn`) + bouton thème (`#theme-btn`)
+- Lien CSS avec cache-bust : `css/style.css?v=YYYYMMDD` — incrémenter la valeur à chaque modif CSS notable
 
 **Sessions dans le sidebar :**
 - `Direction Quiz` — actif (`.active`), fond violet `rgba(124,106,255,0.12)`
@@ -513,7 +515,7 @@ Tout nouveau composant doit être cohérent avec ce fichier en termes de :
 - Position des libellés AVANT / APRÈS / EXPLICATION (au-dessus du graphique, inline-block)
 - Graphiques APRÈS et EXPLICATION empilés verticalement, pleine largeur
 - Sidebar visible sur toutes les pages
-- Bouton thème ☽/☀ dans le header, droite
+- Bouton thème ☽/☀ dans la sidebar (`.sidebar-user-row`), pas dans le header
 
 ---
 

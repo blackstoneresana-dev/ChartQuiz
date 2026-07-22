@@ -49,7 +49,7 @@ Dernière mise à jour : **2026-05-28 (session 14 — Supabase security hardenin
 ## Phase 5 — Authentification ✅
 
 - ✅ Supabase Auth (email + password), `auth.html` + `js/auth.js`
-- ✅ Pseudo dans le header, logout, redirect si non connecté
+- ✅ Pseudo + logout, redirect si non connecté (déplacés dans la sidebar — session 15)
 
 ---
 
@@ -101,6 +101,16 @@ Dernière mise à jour : **2026-05-28 (session 14 — Supabase security hardenin
 - Dossiers : `ChartQuiz_01/Question/q001→q025`, `PA_Quiz/pa001→pa099`
 - Naming PA : `chart_pa{NNN}_{avant_1|avant_2|apres_1|apres_2}_{suffix}.png`
 - Dossiers `trading-errors/` (AUDJPY, GBPJPY, NZDCHF, NZDJPY, WTICOUSD) — non importés
+
+---
+
+## Session 15 — 2026-07-22 (refonte sidebar)
+
+- ✅ Sidebar — logo ChartQuiz dans `.sidebar-header` (remplace titre "Sessions"/"Navigation")
+- ✅ Sidebar — rangée `.sidebar-user-row` horizontale sous le header : badge user + logout + thème (retirés de la top bar)
+- ✅ Top bar réduite au hamburger seul, bordure basse `.header` supprimée
+- ✅ Cache-bust CSS `?v=20260722` sur les 5 pages (fix : navigateurs servaient l'ancien style.css)
+- ✅ Commit f458d07 poussé (inclut aussi le travail PA analysis de session 13)
 
 ---
 
@@ -156,7 +166,7 @@ Dernière mise à jour : **2026-05-28 (session 14 — Supabase security hardenin
 - ✅ Test local validé — form, gate, compare grid, match/miss tout fonctionnel
 - ⏳ Remplir `csv/pa_analysis_answers.csv` + générer `csv/pa_analysis_update.sql` → **ACTION USER**
 - ⏳ Explications PA — compléter `explication_texte` vides via UPDATE SQL → **ACTION USER**
-- ⏳ Déployer sur Vercel (commit + push)
+- ✅ Déployer sur Vercel (commit f458d07, session 15)
 
 ## Prochaine session — À faire en priorité
 
