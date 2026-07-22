@@ -10,7 +10,7 @@ Lis ce fichier en entier avant d'écrire ou de modifier du code.
 **ChartQuiz** est un site web de quiz interactif pour traders, avec 2 formats de quiz :
 
 1. **Direction Quiz** — le trader voit un graphique AVANT, choisit UP/DOWN/SIDEWAYS, valide, puis découvre le graphique APRÈS + EXPLICATION + analyse. À la fin de la session, les sources (paire, timeframe, date, broker) sont révélées.
-2. **Post Analysis** — le trader voit 2 graphiques AVANT un trade et juge si c'était RIGHT ou WRONG, puis voit les 2 graphiques APRÈS.
+2. **Post Analysis** — le trader remplit 5 champs d'analyse (setup, context, edge, signal, exécution) PUIS juge RIGHT ou WRONG. Après validation : 2 graphiques APRÈS + comparaison côte-à-côte réponses de référence vs réponses utilisateur.
 
 Un dashboard personnel permet de suivre ses statistiques et de retravailler ses erreurs.
 Un système d'authentification (Supabase Auth) gère les comptes utilisateurs.
@@ -113,11 +113,44 @@ created_at       timestamp DEFAULT now()
 ```
 
 ### Tables Post Analysis : `pa_questions`, `pa_images`, `pa_responses`
-— `pa_questions` : id, titre, niveau, explication_texte, actif, created_at
+— `pa_questions` : id, titre, explication_texte, bonne_reponse (RIGHT/WRONG), actif, created_at
+  + 5 colonnes analyse nullable : `correct_setup`, `correct_context`, `correct_edge`, `correct_signal`, `correct_execution`
+  → À ajouter via `csv/pa_analysis_columns.sql`
 — `pa_images` : id, question_id, url_avant_1, url_avant_2, url_apres_1, url_apres_2, source_info
 — `pa_responses` : id, user_id, question_id, session_id, choix (RIGHT/WRONG), est_correcte, created_at
+  ⚠️ Les réponses aux 5 champs d'analyse NE SONT PAS persistées (mémoire session uniquement)
 
 **Important Supabase** : toujours inclure `TO anon, authenticated` dans les GRANT — oublier `authenticated` = "permission denied" pour les users connectés.
+
+### Règle Data API (opt-in 2026-05-28)
+
+Les `default privileges` du schéma `public` ne grant plus automatiquement `SELECT/INSERT/UPDATE/DELETE` à `anon`/`authenticated`. Pour toute nouvelle table dans `public`, la migration doit inclure explicitement :
+
+```sql
+CREATE TABLE public.ma_table ( ... );
+
+-- GRANT obligatoire (sinon "permission denied for table ma_table" via Data API)
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.ma_table TO authenticated;
+-- Si lecture publique (ex. questions) :
+GRANT SELECT ON public.ma_table TO anon;
+
+-- RLS toujours activée
+ALTER TABLE public.ma_table ENABLE ROW LEVEL SECURITY;
+
+-- Policy stricte (jamais WITH CHECK (true) ni USING (true) sur INSERT/UPDATE/DELETE)
+CREATE POLICY "insert own" ON public.ma_table
+  FOR INSERT TO authenticated
+  WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "select own" ON public.ma_table
+  FOR SELECT TO authenticated
+  USING (auth.uid() = user_id);
+```
+
+**Policies actives (rappel) :**
+- `users` : INSERT/SELECT authenticated avec `auth.uid() = id`
+- `responses` : INSERT/SELECT authenticated avec `auth.uid() = user_id`
+- `pa_responses` : INSERT/SELECT authenticated avec `auth.uid() = user_id`
 
 ---
 
@@ -368,6 +401,18 @@ En mode nuit, surcharger `.expl-list li` :
 5. **Enregistrement** : chaque réponse est insérée dans `responses` avec :
    `user_id`, `question_id`, `session_id`, `direction`, `est_correcte`, `commentaire`.
 
+### Règles spécifiques Post Analysis
+
+6. **Formulaire d'analyse** : si `pa_questions.correct_setup IS NOT NULL`, le formulaire 5 champs est affiché avant les boutons RIGHT/WRONG. Sinon : fallback legacy (RIGHT/WRONG seul suffit).
+
+7. **Activation du bouton Valider (PA)** : si formulaire actif → 5 champs tous remplis + RIGHT/WRONG choisi. Si formulaire inactif → RIGHT/WRONG suffit. Logique dans `updateSubmitGate()` dans `js/post-analysis.js`.
+
+8. **Après validation PA** : si formulaire actif → afficher section `#pa-analysis-compare` (grille 2 colonnes) AVANT les graphiques APRÈS. Setup + Execution : `match` (vert) si correct, `miss` (rouge) sinon. Context/Edge/Signal : texte brut, pas de coloration.
+
+9. **Réponses analyse non persistées** : les 5 champs utilisateur restent en mémoire session uniquement (`paState.analysis`). `pa_responses` ne change pas.
+
+10. **Migration** : remplir `csv/pa_analysis_answers.csv` → générer `csv/pa_analysis_update.sql` → exécuter dans Supabase. Ne jamais toucher à `js/supabase.js` (les nouvelles colonnes arrivent via `select('*')`).
+
 ---
 
 ## Dashboard — calculs à effectuer
@@ -480,7 +525,7 @@ Tous partagent le même design system et le même sidebar de navigation.
 | Session | Statut | Description |
 |---|---|---|
 | **Direction Quiz** | ✅ Actif | Prédire UP/DOWN/SIDEWAYS — q-001 à q-025 en base |
-| **Post Analysis** | ✅ Actif | Juger si un trade était RIGHT/WRONG — pa-001 en base, pa-002→pa-005 à importer |
+| **Post Analysis** | ✅ Actif | Analyse 5 champs + RIGHT/WRONG — pa-001 à pa-099 en base. Formulaire actif si `correct_setup` non null dans `pa_questions`. |
 
 ---
 

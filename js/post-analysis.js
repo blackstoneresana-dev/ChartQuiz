@@ -14,6 +14,14 @@ const PA_CSS = {
 
 const PA_SCROLL_DELAY = 50;
 
+const PA_COMPARE_LABELS = {
+  setup:     'Type de setup',
+  context:   'Context',
+  edge:      'Edge',
+  signal:    'Signal',
+  execution: 'Exécution',
+};
+
 // ── ÉTAT ──────────────────────────────────────────────────────
 const paState = {
   currentQuestion:  null,
@@ -25,11 +33,15 @@ const paState = {
   sessionResults:   [],
   sessionSize:      10,
   userId:           null,
+  analysisActive:   false,
+  analysis: { setup: '', context: '', edge: '', signal: '', execution: '' },
 };
 
 function paResetState() {
-  paState.selected  = null;
-  paState.submitted = false;
+  paState.selected      = null;
+  paState.submitted     = false;
+  paState.analysisActive = false;
+  paState.analysis      = { setup: '', context: '', edge: '', signal: '', execution: '' };
 }
 
 // ── HELPER DOM ────────────────────────────────────────────────
@@ -59,6 +71,41 @@ function bindEventListeners() {
   $('sidebar-overlay')?.addEventListener('click', closeSidebar);
   $('next-btn')?.addEventListener('click', paLoadNextQuestion);
   $('restart-btn')?.addEventListener('click', paRestartSession);
+  bindAnalysisInputs();
+}
+
+function bindAnalysisInputs() {
+  const textareas = [
+    { id: 'pa-context',  counterId: 'pa-context-counter',  max: 300, key: 'context' },
+    { id: 'pa-edge',     counterId: 'pa-edge-counter',      max: 200, key: 'edge' },
+    { id: 'pa-signal',   counterId: 'pa-signal-counter',    max: 200, key: 'signal' },
+  ];
+
+  textareas.forEach(({ id, counterId, max, key }) => {
+    const el = $(id);
+    const counter = $(counterId);
+    if (!el) return;
+    el.addEventListener('input', () => {
+      const len = el.value.length;
+      paState.analysis[key] = el.value;
+      if (counter) {
+        counter.textContent = `${len} / ${max}`;
+        counter.classList.toggle('over-limit', len >= Math.floor(max * 0.9));
+      }
+      updateSubmitGate();
+    });
+  });
+
+  const setupEl = $('pa-setup');
+  const execEl  = $('pa-execution');
+  if (setupEl) setupEl.addEventListener('change', () => {
+    paState.analysis.setup = setupEl.value;
+    updateSubmitGate();
+  });
+  if (execEl) execEl.addEventListener('change', () => {
+    paState.analysis.execution = execEl.value;
+    updateSubmitGate();
+  });
 }
 
 async function initPASession() {
@@ -112,6 +159,39 @@ function paRenderQuestion({ question, image }) {
 function paResetUI() {
   paResetState();
 
+  const q = paState.sessionQuestions[paState.sessionIndex]?.question;
+  const hasAnalysis = q?.correct_setup != null;
+  paState.analysisActive = hasAnalysis;
+
+  // Form analyse
+  const form = $('pa-analysis-form');
+  if (form) form.hidden = !hasAnalysis;
+
+  // Reset champs
+  ['pa-setup', 'pa-execution'].forEach(id => {
+    const el = $(id);
+    if (el) { el.value = ''; el.disabled = false; }
+  });
+  ['pa-context', 'pa-edge', 'pa-signal'].forEach(id => {
+    const el = $(id);
+    if (el) { el.value = ''; el.disabled = false; }
+  });
+  [
+    { id: 'pa-context-counter', max: 300 },
+    { id: 'pa-edge-counter',    max: 200 },
+    { id: 'pa-signal-counter',  max: 200 },
+  ].forEach(({ id, max }) => {
+    const el = $(id);
+    if (el) { el.textContent = `0 / ${max}`; el.classList.remove('over-limit'); }
+  });
+
+  // Compare section
+  const compare = $('pa-analysis-compare');
+  if (compare) compare.hidden = true;
+  const grid = $('pa-compare-grid');
+  if (grid) grid.innerHTML = '';
+
+  // Submit btn
   const submitBtn = $('submit-btn');
   submitBtn.disabled    = true;
   submitBtn.textContent = 'Valider ma réponse';
@@ -155,7 +235,25 @@ function paSelectOpt(el, choix) {
     btn.classList.remove(...Object.values(PA_CSS.SELECTED))
   );
   el.classList.add(PA_CSS.SELECTED[choix]);
-  $('submit-btn').disabled = false;
+  updateSubmitGate();
+}
+
+// ── GATE SUBMIT ───────────────────────────────────────────────
+function updateSubmitGate() {
+  if (paState.submitted) return;
+  const btn = $('submit-btn');
+  if (!btn) return;
+
+  const hasChoice = !!paState.selected;
+
+  if (!paState.analysisActive) {
+    btn.disabled = !hasChoice;
+    return;
+  }
+
+  const { setup, context, edge, signal, execution } = paState.analysis;
+  const allFilled = setup && context.trim() && edge.trim() && signal.trim() && execution;
+  btn.disabled = !(hasChoice && allFilled);
 }
 
 // ── VALIDATION ────────────────────────────────────────────────
@@ -170,6 +268,7 @@ async function paSubmitAnswer() {
 
     paDisableOptions();
     paColorizeOptions(correct, selected, est_correcte);
+    paDisableAnalysisForm();
 
     savePAResponse({
       question_id:  currentQuestion.question.id,
@@ -194,6 +293,14 @@ function paDisableOptions() {
   btn.textContent = 'Réponse enregistrée';
 }
 
+function paDisableAnalysisForm() {
+  if (!paState.analysisActive) return;
+  ['pa-setup', 'pa-execution', 'pa-context', 'pa-edge', 'pa-signal'].forEach(id => {
+    const el = $(id);
+    if (el) el.disabled = true;
+  });
+}
+
 function paColorizeOptions(correct, selected, est_correcte) {
   document.querySelectorAll('.opt').forEach(btn => {
     const choix = btn.dataset.choix;
@@ -209,6 +316,8 @@ function paRevealResult(est_correcte, correct, { question, image }) {
   $('pa-result-sub').textContent   = est_correcte
     ? `C'était bien un trade ${correct}`
     : `C'était un trade ${correct}`;
+
+  if (paState.analysisActive) paBuildCompare(question);
 
   $('chart-apres-1').src = image.url_apres_1;
   $('chart-apres-2').src = image.url_apres_2;
@@ -236,6 +345,50 @@ function paRevealResult(est_correcte, correct, { question, image }) {
   }
 
   setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), PA_SCROLL_DELAY);
+}
+
+// ── COMPARE ANALYSE ───────────────────────────────────────────
+function paBuildCompare(question) {
+  const compare = $('pa-analysis-compare');
+  const grid    = $('pa-compare-grid');
+  if (!compare || !grid) return;
+
+  const fields = [
+    { key: 'setup',     correct: question.correct_setup,     user: paState.analysis.setup,     graded: true },
+    { key: 'context',   correct: question.correct_context,   user: paState.analysis.context,   graded: false },
+    { key: 'edge',      correct: question.correct_edge,      user: paState.analysis.edge,       graded: false },
+    { key: 'signal',    correct: question.correct_signal,    user: paState.analysis.signal,     graded: false },
+    { key: 'execution', correct: question.correct_execution, user: paState.analysis.execution,  graded: true },
+  ];
+
+  grid.innerHTML = fields.map(({ key, correct, user, graded }) => {
+    const isMatch    = graded && correct && user && correct.trim() === user.trim();
+    const isMiss     = graded && correct && user && correct.trim() !== user.trim();
+    const correctCls = graded ? (isMatch ? 'match' : '') : '';
+    const userCls    = graded ? (isMatch ? 'match' : isMiss ? 'miss' : '') : '';
+    const emptyClass = (v) => v?.trim() ? '' : ' empty';
+
+    return `
+      <div class="pa-compare-row">
+        <div class="pa-compare-label">${PA_COMPARE_LABELS[key]}</div>
+        <div class="pa-compare-cells">
+          <div class="pa-compare-cell${correctCls ? ' ' + correctCls : ''}${emptyClass(correct)}"
+               data-side="Référence">${escapeHtml(correct ?? '—')}</div>
+          <div class="pa-compare-cell${userCls ? ' ' + userCls : ''}${emptyClass(user)}"
+               data-side="Ton analyse">${escapeHtml(user ?? '—')}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  compare.hidden = false;
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 // ── NAVIGATION ────────────────────────────────────────────────

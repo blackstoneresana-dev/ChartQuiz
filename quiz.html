@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ChartQuiz — Direction Quiz</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=20260722">
   <meta name="theme-color" content="#ffffff">
 <!-- Init thème avant rendu (évite le flash) -->
 <script>(function(){const s=localStorage.getItem('chartquiz-theme');const d=s==='dark';if(d)document.documentElement.setAttribute('data-theme','dark');const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=d?'#0a0a0f':'#ffffff';})();</script>
@@ -37,8 +37,13 @@
 <!-- SIDEBAR PANEL -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
-    <span class="sidebar-title">Sessions</span>
+    <div class="logo">Chart<span>Quiz</span></div>
     <button class="sidebar-close" id="sidebar-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="sidebar-user-row">
+    <span class="user-badge" id="user-badge"></span>
+    <button class="logout-btn" id="logout-btn" aria-label="Déconnexion" title="Déconnexion">⎋</button>
+    <button class="theme-btn" id="theme-btn" aria-label="Changer le thème">☽</button>
   </div>
   <nav class="sidebar-nav">
     <a class="sidebar-item" href="index.html">
@@ -81,12 +86,6 @@
     <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Menu sessions">
       <span></span><span></span><span></span>
     </button>
-    <div class="logo">Chart<span>Quiz</span></div>
-    <div style="display:flex;align-items:center;gap:8px;">
-      <span class="user-badge" id="user-badge"></span>
-      <button class="logout-btn" id="logout-btn" aria-label="Déconnexion" title="Déconnexion">⎋</button>
-      <button class="theme-btn" id="theme-btn" aria-label="Changer le thème">☽</button>
-    </div>
   </div>
 
   <!-- ÉTAT CHARGEMENT -->

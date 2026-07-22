@@ -1,7 +1,7 @@
 # plan.md — ChartQuiz
 
 **Source de vérité unique** pour l'avancement du projet. Mis à jour à chaque session.
-Dernière mise à jour : **2026-05-07 (session 12)**
+Dernière mise à jour : **2026-05-28 (session 14 — Supabase security hardening)**
 
 ---
 
@@ -92,7 +92,9 @@ Dernière mise à jour : **2026-05-07 (session 12)**
 - Clé anon : `sb_publishable_H5Az5UewihranMkw_f5M4w_XZbnwO5u`
 - Tables Direction : `questions`, `options`, `images`, `users`, `responses`
 - Tables Post Analysis : `pa_questions`, `pa_images`, `pa_responses`
-- ⚠️ Toujours inclure `TO anon, authenticated` dans les GRANT
+- **Opt-in nouvelle Data API** (2026-05-28) : `default privileges` du schéma `public` ne grant plus `SELECT/INSERT/UPDATE/DELETE` à `anon`/`authenticated`. **Toute nouvelle table doit inclure les `GRANT` explicites + `ENABLE RLS` + policies non permissives dans sa migration**. Voir `CLAUDE.md` section "Règle Data API" pour le template.
+- Policies RLS hardenées (2026-05-28) : `users` / `responses` / `pa_responses` INSERT et SELECT restreints à `auth.uid() = id|user_id` (avant : `WITH CHECK (true)` et `USING (true)`).
+- Auth hardening dashboard : min password 10, complexité full, Secure password change ON, Require current password ON. Leaked password HaveIBeenPwned = Pro plan only (non activé).
 
 ### Cloudinary
 - Cloud name : `dh4cnlh03` — API Key : `785422968249697`
@@ -128,9 +130,41 @@ Dernière mise à jour : **2026-05-07 (session 12)**
 
 ---
 
+## Session 14 — 2026-05-28 (Supabase security hardening)
+
+- ✅ MCP Supabase configuré (`supabase-chartquiz`, read-only, user-scope)
+- ✅ Audit security via `get_advisors` → 4 lints identifiés
+- ✅ DROP policies permissives `WITH CHECK (true)` sur `users`, `responses`, `pa_responses`
+- ✅ CREATE policies strictes `WITH CHECK (auth.uid() = id|user_id)` (INSERT) + `USING (auth.uid() = user_id)` (SELECT `responses`)
+- ✅ Opt-in nouvelle Data API default : `ALTER DEFAULT PRIVILEGES … REVOKE … FROM anon, authenticated`
+- ✅ Dashboard auth hardening : min length 10, complexité upper/lower/digits/symbols, Secure password change ON, Require current password ON
+- ✅ `CLAUDE.md` MAJ avec template migration + rappel policies
+- ⚠️ Leaked password protection (HaveIBeenPwned) bloqué = Pro plan only — mitigation gratuite appliquée à la place
+- ℹ️ Lint final restant : `auth_leaked_password_protection` (intentionnel, Pro plan)
+
+---
+
+## Session 13 — 2026-05-21
+
+- ✅ Post Analysis — formulaire analyse structurée 5 champs avant validation (setup, context, edge, signal, execution)
+- ✅ `csv/pa_analysis_columns.sql` — ALTER TABLE pa_questions (5 colonnes nullable) — **à exécuter dans Supabase**
+- ✅ `csv/pa_analysis_answers.csv` — template 99 lignes vides pour migration données
+- ✅ `post-analysis.html` — section `#pa-analysis-form` + section `#pa-analysis-compare`
+- ✅ `css/style.css` — styles `.pa-analysis-*`, `.pa-compare-*`, responsive mobile
+- ✅ `js/post-analysis.js` — `paState.analysis`, `bindAnalysisInputs()`, `updateSubmitGate()`, `paBuildCompare()`, fallback legacy
+- ✅ Exécuter `csv/pa_analysis_columns.sql` dans Supabase (ALTER TABLE) — fait session 13
+- ✅ Test local validé — form, gate, compare grid, match/miss tout fonctionnel
+- ⏳ Remplir `csv/pa_analysis_answers.csv` + générer `csv/pa_analysis_update.sql` → **ACTION USER**
+- ⏳ Explications PA — compléter `explication_texte` vides via UPDATE SQL → **ACTION USER**
+- ⏳ Déployer sur Vercel (commit + push)
+
 ## Prochaine session — À faire en priorité
 
-1. ✅ **Bug session PA** — sessionSize 5→10 corrigé, texte camembert aligné.
-2. ✅ **Expand graphique au clic image** — clic sur image remplace icône, cursor zoom-in, boutons supprimés.
-3. ✅ **Dashboard séparé par quiz** — tabs Tous/Direction/PA, KPI + erreurs par quiz, heatmap globale.
-4. **Explications PA** — compléter `explication_texte` vides via UPDATE SQL
+### Actions utilisateur (hors code) à faire AVANT la session
+1. **Remplir `csv/pa_analysis_answers.csv`** — ouvrir le fichier, renseigner les 5 colonnes (`correct_setup`, `correct_context`, `correct_edge`, `correct_signal`, `correct_execution`) pour chaque question PA. Les valeurs autorisées pour `correct_setup` : `Cheese trade LTF`, `Anticipation`, `Trend pullback classic`. Pour `correct_execution` : `Good` ou `Bad`. Laisser vide si la question n'a pas encore de bonne réponse.
+2. **Remplir `explication_texte`** — identifier les questions PA sans texte d'explication (pa-003, pa-005, pa-007…) et préparer les textes.
+
+### Ce que Claude fera en début de session suivante
+1. Générer `csv/pa_analysis_update.sql` depuis le CSV rempli
+2. Générer le SQL UPDATE pour les explications PA manquantes
+3. Commit + push → déploiement Vercel
