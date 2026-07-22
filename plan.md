@@ -109,7 +109,9 @@ Dernière mise à jour : **2026-05-28 (session 14 — Supabase security hardenin
 - ✅ Sidebar — logo ChartQuiz dans `.sidebar-header` (remplace titre "Sessions"/"Navigation")
 - ✅ Sidebar — rangée `.sidebar-user-row` horizontale sous le header : badge user + logout + thème (retirés de la top bar)
 - ✅ Top bar réduite au hamburger seul, bordure basse `.header` supprimée
-- ✅ Cache-bust CSS `?v=20260722` sur les 5 pages (fix : navigateurs servaient l'ancien style.css)
+- ✅ Cache-bust CSS `?v=` sur les 5 pages (fix : navigateurs servaient l'ancien style.css) — bumper à chaque modif CSS
+- ✅ Header sticky (`top: 0; z-index: 99`) — hamburger figé au scroll
+- ✅ Header translucide : token `--bg-glass` (blanc/noir 65%) + `backdrop-filter: blur(12px)`
 - ✅ Commit f458d07 poussé (inclut aussi le travail PA analysis de session 13)
 
 ---

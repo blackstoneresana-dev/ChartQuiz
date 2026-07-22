@@ -357,6 +357,7 @@ En mode nuit, surcharger `.expl-list li` :
 **Structure HTML :**
 - `.sidebar-overlay` et `<aside class="sidebar">` sont placés **avant** `.container`, directement sous `<body>`
 - Le `.header` (top bar) contient **uniquement** le bouton hamburger — pas de logo, pas de bordure basse
+- Le `.header` est **sticky** (`top: 0; z-index: 99`) et translucide : `background: var(--bg-glass)` + `backdrop-filter: blur(12px)` — hamburger toujours visible au scroll
 - Le logo `ChartQuiz` est dans le `.sidebar-header` (remplace l'ancien titre "Sessions"/"Navigation")
 - Sous le `.sidebar-header` : rangée `.sidebar-user-row` alignée horizontale — badge user (`#user-badge`, flex:1) + bouton déconnexion (`#logout-btn`) + bouton thème (`#theme-btn`)
 - Lien CSS avec cache-bust : `css/style.css?v=YYYYMMDD` — incrémenter la valeur à chaque modif CSS notable
